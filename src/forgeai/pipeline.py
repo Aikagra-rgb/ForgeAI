@@ -57,6 +57,7 @@ def run_factory(
     llm: Optional[LLMClient] = None,
     answer_fn: Optional[Callable[[str, int, int], str]] = None,
     checkpoint_fn: Optional[Callable[[RequirementsDoc], RequirementsDoc]] = None,
+    requirements_override: Optional[RequirementsDoc] = None,
     progress_fn: Optional[Callable[[str], None]] = None,
 ) -> tuple[AgentConfig, Scorecard, Path]:
     """Run the complete ForgeAI pipeline and persist all artifacts to output_dir."""
@@ -71,14 +72,14 @@ def run_factory(
     _write_json(out / "corpus_manifest.json", manifest)
 
     log("Stage 2/6: Running Intake Interviewer & Tool-Aware Groundability Guard...")
-    requirements = run_intake_interview(
+    requirements = requirements_override or run_intake_interview(
         brief=brief,
         manifest=manifest,
         llm=client,
         unattended=unattended,
         answer_fn=answer_fn,
     )
-    if checkpoint_fn is not None and not unattended:
+    if requirements_override is None and checkpoint_fn is not None and not unattended:
         requirements = checkpoint_fn(requirements)
     _write_json(out / "requirements.json", requirements)
 
