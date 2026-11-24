@@ -1,0 +1,34 @@
+{
+  "iteration": 1,
+  "score_before": 0.75,
+  "score_after": 0.75,
+  "passed_before": 15,
+  "passed_after": 15,
+  "total_cases": 20,
+  "failure_breakdown": {
+    "prompt_defect": 4,
+    "wrong_refusal": 1
+  },
+  "addressed_case_ids": [
+    "ans_06",
+    "ans_09",
+    "ans_10",
+    "multi_02"
+  ],
+  "changes": [
+    {
+      "component": "system_prompt.instructions",
+      "before": "Use the provided documents and tools to answer questions about FMLA eligibility, qualifying reasons, medical certification, and paid parental/adoption leave. Refuse any requests outside the scope of the provided documents and tools.",
+      "after": "Use the provided documents and tools to answer questions about FMLA eligibility, qualifying reasons, medical certification, and paid parental/adoption leave. Ensure all responses are based solely on the provided documents and tools, and do not include any external information. Refrain from answering questions outside the scope of the provided documents and tools.",
+      "reason": "Clarified the scope and added a directive to avoid external information."
+    },
+    {
+      "component": "rollback",
+      "before": "v2",
+      "after": "v1",
+      "reason": "Rolled back patch because pass rate dropped (75.0% -> 70.0%)."
+    }
+  ],
+  "tokens_used": 61550,
+  "latency_ms": 124310.70590001764
+}

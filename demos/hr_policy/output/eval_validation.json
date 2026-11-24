@@ -1,0 +1,139 @@
+{
+  "total_non_refusal_cases": 15,
+  "cases_validated": 15,
+  "total_facts_checked": 27,
+  "facts_kept": 22,
+  "facts_dropped": 5,
+  "cases_regenerated": 2,
+  "case_details": [
+    {
+      "case_id": "ans_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_04",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_05",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_06",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_07",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_08",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_09",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_10",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "for the employer for at least 1250 hours in the 12 months before you take leave"
+      ],
+      "regenerated": true
+    },
+    {
+      "case_id": "multi_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 4,
+      "kept_fact_count": 4,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 3,
+      "kept_fact_count": 3,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "The 12-month FMLA window is measured backward from the date FMLA leave is used."
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "Employee responsibilities during FMLA leave"
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [
+        "The terms 'birth' and 'placement' have specific meanings under title 5 regulations.",
+        "PPL may not be granted based on an anticipated birth or placement."
+      ],
+      "regenerated": true
+    }
+  ]
+}

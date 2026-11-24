@@ -1,0 +1,90 @@
+{
+  "docs_dir": "demos\\unseen_rehearsal\\docs",
+  "total_files": 3,
+  "documents": [
+    {
+      "filename": "hardware_inventory.csv",
+      "file_type": "csv",
+      "title": "Hardware Inventory",
+      "headings": [],
+      "summary_bullets": [],
+      "word_count": 80,
+      "csv_columns": [
+        "asset_id",
+        "model",
+        "category",
+        "department",
+        "unit_price_usd",
+        "stock_qty",
+        "warranty_expiry"
+      ],
+      "csv_row_count": 8,
+      "csv_sample_rows": [
+        {
+          "asset_id": "IT-101",
+          "model": "ThinkPad X1 Carbon Gen 12",
+          "category": "Laptop",
+          "department": "Engineering",
+          "unit_price_usd": "1650",
+          "stock_qty": "9",
+          "warranty_expiry": "2027-06-30"
+        },
+        {
+          "asset_id": "IT-102",
+          "model": "MacBook Pro 14 M3",
+          "category": "Laptop",
+          "department": "Design",
+          "unit_price_usd": "2100",
+          "stock_qty": "4",
+          "warranty_expiry": "2025-12-15"
+        },
+        {
+          "asset_id": "IT-103",
+          "model": "Dell UltraSharp 27 4K",
+          "category": "Monitor",
+          "department": "Operations",
+          "unit_price_usd": "580",
+          "stock_qty": "15",
+          "warranty_expiry": "2026-03-01"
+        }
+      ]
+    },
+    {
+      "filename": "it_asset_policy.md",
+      "file_type": "md",
+      "title": "Corporate IT Asset & Replacement Policy",
+      "headings": [
+        "Corporate IT Asset & Replacement Policy",
+        "1. Warranty & Replacement Eligibility",
+        "2. Bulk Order Discounts",
+        "3. Purchase Approvals"
+      ],
+      "summary_bullets": [
+        "- Hardware assets whose `warranty_expiry` date is earlier than today's date are classified as **Out of Warranty** and eligible for immediate standard replacement.",
+        "- Assets still within warranty require a P1 or P2 hardware diagnostic ticket before replacement is authorized.",
+        "- Orders of **1 to 4 units** pay standard catalogue `unit_price_usd`."
+      ],
+      "word_count": 151,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    },
+    {
+      "filename": "support_sla.txt",
+      "file_type": "txt",
+      "title": "IT SUPPORT SLA AND LOANER GUIDELINES",
+      "headings": [
+        "IT SUPPORT SLA AND LOANER GUIDELINES"
+      ],
+      "summary_bullets": [
+        "- Severity P1 (Critical outage affecting multiple users or servers): 30 minutes initial response, 4 hours target resolution.",
+        "- Severity P2 (Single user blocked from primary workstation): 4 hours initial response, 1 business day target resolution.",
+        "- Severity P3 (Accessory request or non-blocking issue): 1 business day initial response, 3 business days target resolution."
+      ],
+      "word_count": 105,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    }
+  ]
+}

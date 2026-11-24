@@ -1,0 +1,1 @@
+I need a maritime logistics and port-operations assistant for vessel planners to look up port codes, coordinates, draft limits, port call costs, and container fleet vessel classes/capacities from the LINERLIB dataset, calculate total port call or voyage cost estimates, and check live port weather conditions when coordinates are available.

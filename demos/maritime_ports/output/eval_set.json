@@ -1,0 +1,318 @@
+{
+  "agent_name": "MaritimeLogisticsAssistant",
+  "cases": [
+    {
+      "id": "ans_01",
+      "category": "answerable",
+      "question": "What is the scope of LINERLIB in the context of liner shipping network design?",
+      "expected_source_docs": [
+        "linerlib_readme.md"
+      ],
+      "expected_facts": [
+        "A benchmark suite for liner shipping network design problems and a parser for the instances in c++"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "linerlib_readme.md::sec::c0"
+      ],
+      "rationale": "Grounded in linerlib_readme.md (chunk 1)"
+    },
+    {
+      "id": "ans_02",
+      "category": "answerable",
+      "question": "What is the panamaFee for a Panamax_2400 vessel class?",
+      "expected_source_docs": [
+        "fleet_data.csv"
+      ],
+      "expected_facts": [
+        "panamaFee: 345600"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "fleet_data.csv::rows_4_6"
+      ],
+      "rationale": "Grounded in fleet_data.csv (rows 4-6)"
+    },
+    {
+      "id": "ans_03",
+      "category": "answerable",
+      "question": "What is the fixed port call cost for the port of Hamburg?",
+      "expected_source_docs": [
+        "ports.csv"
+      ],
+      "expected_facts": [
+        "Row 96: UNLocode: DEHAM | name: Hamburg | Country: Germany | Cabotage_Region: Germany | D_Region: North Continent Europe | Longitude: 10 | Latitude: 53.55 | Draft: 12.5 | CostPerFULL: 466.00 | CostPerFULLTrnsf: 224.00 | PortCallCostFixed: 18560.00 | PortCallCostPerFFE: 15.00"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "ports.csv::rows_94_96"
+      ],
+      "rationale": "Grounded in ports.csv (rows 94-96)"
+    },
+    {
+      "id": "ans_04",
+      "category": "answerable",
+      "question": "What adjustment is made to generate a HIGH capacity case instance?",
+      "expected_source_docs": [
+        "linerlib_readme.md"
+      ],
+      "expected_facts": [
+        "To generate a HIGH capacity case you need to: Multiply TC Rates"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "linerlib_readme.md::sec::c4"
+      ],
+      "rationale": "Grounded in linerlib_readme.md (chunk 5)"
+    },
+    {
+      "id": "ans_05",
+      "category": "answerable",
+      "question": "What is the fixed daily cost for a Feeder_450 vessel class?",
+      "expected_source_docs": [
+        "fleet_data.csv"
+      ],
+      "expected_facts": [
+        "TC rate daily (fixed Cost): 5000"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "fleet_data.csv::rows_1_3"
+      ],
+      "rationale": "Grounded in fleet_data.csv (rows 1-3)"
+    },
+    {
+      "id": "ans_06",
+      "category": "answerable",
+      "question": "What is the fixed cost for a port call at Zarate?",
+      "expected_source_docs": [
+        "ports.csv"
+      ],
+      "expected_facts": [
+        "PortCallCostFixed: 8064.00"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "ports.csv::rows_286_288"
+      ],
+      "rationale": "Grounded in ports.csv (rows 286-288)"
+    },
+    {
+      "id": "ans_07",
+      "category": "answerable",
+      "question": "What are the external data sources used in the benchmark suite for the liner shipping network design model?",
+      "expected_source_docs": [
+        "linerlib_readme.md"
+      ],
+      "expected_facts": [
+        "The benchmark suite originates from publicly available data and past data for Maersk Line.",
+        "External data sources are: “Distances between ports - Pub. 151”, National Imagery and Mapping Agency (www.marcon.com/library/resources/DBP/DBP.html).",
+        "The Hamburg Index, Vereinigung Hamburger Schiffsmakler und Schiffsagenten, (www.vhss.de).",
+        "\"Charter Rates 2000-2010\", Alphaliner charter rates 2000-2010"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "linerlib_readme.md::sec::c1"
+      ],
+      "rationale": "Grounded in linerlib_readme.md (chunk 2)"
+    },
+    {
+      "id": "ans_08",
+      "category": "answerable",
+      "question": "What is the fixed port call cost for the port of Tilbury?",
+      "expected_source_docs": [
+        "ports.csv"
+      ],
+      "expected_facts": [
+        "PortCallCostFixed: 21497.00"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "ports.csv::rows_262_264"
+      ],
+      "rationale": "Grounded in ports.csv (rows 262-264)"
+    },
+    {
+      "id": "ans_09",
+      "category": "answerable",
+      "question": "What change was made to the Demand_WorldSmall file in Version 1.2 released in February 2024?",
+      "expected_source_docs": [
+        "linerlib_readme.md"
+      ],
+      "expected_facts": [
+        "Added an additional Demand_WorldSmall file as demands above 1000 FFe where wrongfully truncated to a decimal number of 1.xx. Original file is kept for benchmarks and new correct demand file added as Demand_WorldSmall_Fixed_Sep.csv"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "linerlib_readme.md::sec::c8"
+      ],
+      "rationale": "Grounded in linerlib_readme.md (chunk 9)"
+    },
+    {
+      "id": "ans_10",
+      "category": "answerable",
+      "question": "What are the longitude and latitude coordinates for the port of Tampico in Mexico?",
+      "expected_source_docs": [
+        "ports.csv"
+      ],
+      "expected_facts": [
+        "Row 418: UNLocode: MXTAM | name: Tampico | Country: Mexico | Cabotage_Region: Mexico | D_Region: US West Coast | Longitude: 22.15 | Latitude: -97.52"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "ports.csv::rows_415_420"
+      ],
+      "rationale": "The chunk directly states the longitude and latitude of Tampico in the document."
+    },
+    {
+      "id": "ref_01",
+      "category": "refusal",
+      "question": "What are the current regulations for shipping hazardous materials?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_02",
+      "category": "refusal",
+      "question": "Can you provide a list of all the ports that have implemented electronic documentation systems?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_03",
+      "category": "refusal",
+      "question": "How do I schedule a pilot boat for my vessel?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_04",
+      "category": "refusal",
+      "question": "What are the latest updates on maritime labor laws?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_05",
+      "category": "refusal",
+      "question": "Could you give me an overview of the global shipping routes and their trade volumes?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "multi_01",
+      "category": "edge_multi_doc",
+      "question": "What is the difference in the TC rate daily (fixed Cost) between the Feeder_450 and Feeder_800 vessel classes, and how does this compare to the Panama Canal fee for the Feeder_800 vessel?",
+      "expected_source_docs": [
+        "fleet_data.csv",
+        "linerlib_readme.md"
+      ],
+      "expected_facts": [
+        "TC rate daily (fixed Cost) for Feeder_450 is 5000",
+        "TC rate daily (fixed Cost) for Feeder_800 is 8000",
+        "PanamaFee for Feeder_800 is 115200"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "fleet_data.csv::rows_1_3",
+        "linerlib_readme.md::sec::c7"
+      ],
+      "rationale": "Cross-document synthesis (fleet_data.csv + linerlib_readme.md)"
+    },
+    {
+      "id": "multi_02",
+      "category": "edge_multi_doc",
+      "question": "What is the TC rate daily (fixed Cost) for the Super_panamax vessel class as of February 2024, and how does it compare to the Panamax_2400 vessel class?",
+      "expected_source_docs": [
+        "fleet_data.csv",
+        "linerlib_readme.md"
+      ],
+      "expected_facts": [
+        "TC rate daily (fixed Cost) for Super_panamax is 55000",
+        "TC rate daily (fixed Cost) for Panamax_2400 is 21000"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "linerlib_readme.md::sec::c7",
+        "fleet_data.csv::rows_4_6"
+      ],
+      "rationale": "Cross-document synthesis (linerlib_readme.md + fleet_data.csv)"
+    },
+    {
+      "id": "multi_03",
+      "category": "edge_multi_doc",
+      "question": "What is the fixed cost per day for a vessel with a capacity of 2400 FFE that can navigate through the Suez Canal, and what is the draft of the port in Piraeus?",
+      "expected_source_docs": [
+        "fleet_data.csv",
+        "ports.csv"
+      ],
+      "expected_facts": [
+        "draft of the port in Piraeus is 12.5"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "ports.csv::rows_196_198",
+        "fleet_data.csv::rows_4_6"
+      ],
+      "rationale": "Cross-document synthesis (ports.csv + fleet_data.csv)"
+    },
+    {
+      "id": "amb_01",
+      "category": "edge_ambiguous",
+      "question": "What is the total cost for a vessel with a container capacity of 10,000 FEU to make a port call at Douala, including fixed and variable costs?",
+      "expected_source_docs": [
+        "ports.csv"
+      ],
+      "expected_facts": [
+        "PortCallCostFixed for Douala",
+        "PortCallCostPerFFE for Douala"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "ports.csv::rows_67_69"
+      ],
+      "rationale": "Ambiguous/underspecified query handling"
+    },
+    {
+      "id": "amb_02",
+      "category": "edge_ambiguous",
+      "question": "What is the total cost for a Super_panamax vessel to make a port call at a Suez port, considering the vessel's daily fixed cost and the Suez fee?",
+      "expected_source_docs": [
+        "fleet_data.csv"
+      ],
+      "expected_facts": [
+        "suezFee for Super_panamax"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "fleet_data.csv::rows_4_6"
+      ],
+      "rationale": "Ambiguous/underspecified query handling"
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "agent_name": "ITAssetAssistant",
+  "total_cases": 20,
+  "initial_pass_rate": 0.95,
+  "final_pass_rate": 0.95,
+  "passed_cases": 19,
+  "failed_cases": 1,
+  "iterations": [],
+  "final_results": [
+    {
+      "case_id": "ans_01",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Orders of 5 to 9 units receive a 10% bulk discount on the subtotal.",
+          "present": true,
+          "evidence": "Based on the retrieved context, an order of 7 units of hardware assets falls into the category of 5 to 9 units, which qualifies for a 10% bulk discount on the subtotal."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_02",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "unit_price_usd: 2900",
+          "present": true,
+          "evidence": "The unit price for the Logitech Rally Bar is $2900 USD and the stock quantity is 2 units. [Source: hardware_inventory.csv]"
+        },
+        {
+          "fact": "stock_qty: 2",
+          "present": true,
+          "evidence": "The unit price for the Logitech Rally Bar is $2900 USD and the stock quantity is 2 units. [Source: hardware_inventory.csv]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_03",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement.",
+          "present": true,
+          "evidence": "According to the IT Support SLA and Loaner Guidelines [Source: support_sla.txt], employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_04",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "15% bulk discount on the subtotal for orders of 10 or more units",
+          "present": true,
+          "evidence": "Orders of 10 or more units receive a 15% bulk discount on the subtotal."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_05",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "unit_price_usd: 1650",
+          "present": true,
+          "evidence": "The unit price of the ThinkPad X1 Carbon Gen 12 laptop is $1650. [Source: hardware_inventory.csv]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_06",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Loaners must be returned within 2 business days of receiving replacement hardware.",
+          "present": true,
+          "evidence": "loaners must be returned within 2 business days of receiving replacement hardware"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_07",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Orders of 10 or more units receive a 15% bulk discount on the subtotal.",
+          "present": true,
+          "evidence": "Orders of 10 or more units receive a 15% bulk discount on the subtotal."
+        },
+        {
+          "fact": "A flat USD 75 staging and imaging fee applies per order regardless of quantity.",
+          "present": true,
+          "evidence": "A flat USD 75 staging and imaging fee applies per order regardless of quantity."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_08",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "unit_price_usd: 1650",
+          "present": true,
+          "evidence": "The unit price of the ThinkPad X1 Carbon Gen 12 laptop is $1650. [Source: hardware_inventory.csv]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_09",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement.",
+          "present": true,
+          "evidence": "According to the IT Support SLA and Loaner Guidelines [Source: support_sla.txt], employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_10",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Orders of 5 to 9 units receive a 10% bulk discount on the subtotal.",
+          "present": true,
+          "evidence": "Based on the retrieved context, an order of 7 units of hardware assets falls into the category of 5 to 9 units, which qualifies for a 10% bulk discount on the subtotal."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_01",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. [Source: it_asset_policy.md | support_sla.txt]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_02",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_03",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. My capabilities are limited to looking up hardware details, calculating replacement order totals with applicable bulk discounts, and checking warranty expiry dates. Drafting emails or submitting purchase approval tickets are not within my scope."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_04",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": false,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_05",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. The provided context does not contain information related to password reset procedures. Please refer to your organization's internal IT support guidelines or contact your system administrator for assistance with resetting your password. [Source: support_sla.txt]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_01",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Dell UltraSharp 27 4K monitor unit price is $580",
+          "present": true,
+          "evidence": "Row 3: asset_id: IT-103 | model: Dell UltraSharp 27 4K | category: Monitor | department: Operations | unit_price_usd: 580"
+        },
+        {
+          "fact": "Order of 10 or more units receives a 15% bulk discount",
+          "present": true,
+          "evidence": "it_asset_policy.md | chunk 2: Orders of 10 or more units receive a 15% bulk discount on the subtotal."
+        },
+        {
+          "fact": "USD 75 staging and imaging fee applies per order",
+          "present": true,
+          "evidence": "it_asset_policy.md | chunk 2: A flat USD 75 staging and imaging fee applies per order regardless of quantity."
+        },
+        {
+          "fact": "Orders exceeding USD 5,000 require VP Finance sign-off",
+          "present": true,
+          "evidence": "it_asset_policy.md | chunk 2: Orders exceeding USD 5,000 require VP Finance sign-off."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_02",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "A flat USD 75 staging and imaging fee applies per order regardless of quantity.",
+          "present": true,
+          "evidence": "A flat USD 75 staging and imaging fee applies per order regardless of quantity."
+        },
+        {
+          "fact": "Orders exceeding USD 5,000 require VP Finance sign-off.",
+          "present": true,
+          "evidence": "Orders exceeding USD 5,000 require VP Finance sign-off."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_03",
+      "category": "edge_multi_doc",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "iPad Pro 11 M4 loan period is 14 calendar days",
+          "present": true,
+          "evidence": "The maximum loan period for an iPad Pro 11 M4 is 14 calendar days while awaiting repair or replacement, as per the [Source: support_sla.txt]."
+        },
+        {
+          "fact": "Field Ops department manages iPad Pro 11 M4",
+          "present": false,
+          "evidence": "Regarding maintenance under the support SLA, the specific department responsible for maintenance is not mentioned in the provided context."
+        }
+      ],
+      "fact_score": 0.5,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (50%): ['Field Ops department manages iPad Pro 11 M4']"
+    },
+    {
+      "case_id": "amb_01",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "14 calendar days",
+          "present": true,
+          "evidence": "employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "amb_02",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "stock_qty: 2",
+          "present": true,
+          "evidence": "The current stock quantity of Logitech Rally Bars in the Facilities department is 2 units."
+        },
+        {
+          "fact": "unit_price_usd: 2900",
+          "present": true,
+          "evidence": "and the unit price is $2900 USD."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    }
+  ],
+  "budget": {
+    "max_tokens": 400000,
+    "max_latency_seconds": 1200.0,
+    "tokens_used": 111399,
+    "latency_seconds": 185.74676729965722,
+    "stopped_early": false,
+    "stop_reason": ""
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "docs_dir": "demos\\maritime_ports\\docs",
+  "total_files": 3,
+  "documents": [
+    {
+      "filename": "fleet_data.csv",
+      "file_type": "csv",
+      "title": "Fleet Data",
+      "headings": [],
+      "summary_bullets": [],
+      "word_count": 64,
+      "csv_columns": [
+        "Vessel class",
+        "Capacity FFE",
+        "TC rate daily (fixed Cost)",
+        "draft",
+        "minSpeed",
+        "maxSpeed",
+        "designSpeed",
+        "Bunker ton per day at designSpeed",
+        "Idle Consumption ton/day",
+        "panamaFee",
+        "suezFee"
+      ],
+      "csv_row_count": 6,
+      "csv_sample_rows": [
+        {
+          "Vessel class": "Feeder_450",
+          "Capacity FFE": "450",
+          "TC rate daily (fixed Cost)": "5000",
+          "draft": "8",
+          "minSpeed": "10",
+          "maxSpeed": "14",
+          "designSpeed": "12",
+          "Bunker ton per day at designSpeed": "18.8",
+          "Idle Consumption ton/day": "2.4",
+          "panamaFee": "64800",
+          "suezFee": "175769"
+        },
+        {
+          "Vessel class": "Feeder_800",
+          "Capacity FFE": "800",
+          "TC rate daily (fixed Cost)": "8000",
+          "draft": "9.5",
+          "minSpeed": "10",
+          "maxSpeed": "17",
+          "designSpeed": "14",
+          "Bunker ton per day at designSpeed": "23.7",
+          "Idle Consumption ton/day": "2.5",
+          "panamaFee": "115200",
+          "suezFee": "218445"
+        },
+        {
+          "Vessel class": "Panamax_1200",
+          "Capacity FFE": "1200",
+          "TC rate daily (fixed Cost)": "11000",
+          "draft": "12",
+          "minSpeed": "12",
+          "maxSpeed": "19",
+          "designSpeed": "18",
+          "Bunker ton per day at designSpeed": "52.5",
+          "Idle Consumption ton/day": "4",
+          "panamaFee": "172800",
+          "suezFee": "267217"
+        }
+      ]
+    },
+    {
+      "filename": "linerlib_readme.md",
+      "file_type": "md",
+      "title": "LINERLIB",
+      "headings": [
+        "LINERLIB",
+        "HISTORY:"
+      ],
+      "summary_bullets": [
+        "A benchmark suite for liner shipping network design problems and a parser for the instances in c++",
+        "This is the benchmark suite for liner shipping network design described in",
+        "\"Brouer, Berit D.; Alvarez, J. Fernando; Plum, Christian Edinger Munk; Pisinger, David; Sigurd, Mikkel M."
+      ],
+      "word_count": 679,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    },
+    {
+      "filename": "ports.csv",
+      "file_type": "csv",
+      "title": "Ports",
+      "headings": [],
+      "summary_bullets": [],
+      "word_count": 4993,
+      "csv_columns": [
+        "UNLocode",
+        "name",
+        "Country",
+        "Cabotage_Region",
+        "D_Region",
+        "Longitude",
+        "Latitude",
+        "Draft",
+        "CostPerFULL",
+        "CostPerFULLTrnsf",
+        "PortCallCostFixed",
+        "PortCallCostPerFFE"
+      ],
+      "csv_row_count": 435,
+      "csv_sample_rows": [
+        {
+          "UNLocode": "GBABD",
+          "name": "Aberdeen",
+          "Country": "United Kingdom",
+          "Cabotage_Region": "United Kingdom",
+          "D_Region": "UK",
+          "Longitude": "-2.0937",
+          "Latitude": "57.125",
+          "Draft": "9.5",
+          "CostPerFULL": "289.00",
+          "CostPerFULLTrnsf": "137.00",
+          "PortCallCostFixed": "34632.00",
+          "PortCallCostPerFFE": "10.00"
+        },
+        {
+          "UNLocode": "CIABJ",
+          "name": "Abidjan",
+          "Country": "Ivory Coast",
+          "Cabotage_Region": "Ivory Coast",
+          "D_Region": "West Africa",
+          "Longitude": "-4.03",
+          "Latitude": "5.32",
+          "Draft": "9.5",
+          "CostPerFULL": "170.00",
+          "CostPerFULLTrnsf": "309.00",
+          "PortCallCostFixed": "2238.00",
+          "PortCallCostPerFFE": "16.00"
+        },
+        {
+          "UNLocode": "AEAUH",
+          "name": "Abu Dhabi",
+          "Country": "U. A. E.",
+          "Cabotage_Region": "U. A. E.",
+          "D_Region": "Dubai",
+          "Longitude": "54.3593",
+          "Latitude": "24.4531",
+          "Draft": "11",
+          "CostPerFULL": "75.00",
+          "CostPerFULLTrnsf": "57.00",
+          "PortCallCostFixed": "1572.00",
+          "PortCallCostPerFFE": "1.00"
+        }
+      ]
+    }
+  ]
+}

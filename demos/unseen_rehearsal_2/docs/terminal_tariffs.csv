@@ -1,0 +1,13 @@
+terminal_code,city,country,latitude,longitude,reefer_plug_daily_usd,power_surcharge_pct,free_dwell_days,max_temp_c
+CC-RTM,Rotterdam,Netherlands,51.9244,4.4777,95,12,3,8
+CC-SGP,Singapore,Singapore,1.2644,103.8220,110,15,2,6
+CC-BUS,Busan,South Korea,35.1028,129.0403,85,10,3,8
+CC-HAM,Hamburg,Germany,53.5461,9.9661,92,14,3,8
+CC-LAX,Los Angeles,United States,33.7405,-118.2720,125,18,2,7
+CC-SAV,Savannah,United States,32.0809,-81.0912,98,11,3,8
+CC-DXB,Jebel Ali,UAE,25.0113,55.0612,115,20,2,5
+CC-SHA,Shanghai,China,31.2304,121.4737,88,12,3,8
+CC-ANT,Antwerp,Belgium,51.2602,4.4028,94,13,3,8
+CC-TNG,Tanjung Pelepas,Malaysia,1.3625,103.5481,78,9,4,8
+CC-MEL,Melbourne,Australia,-37.8136,144.9631,105,16,2,7
+CC-SAN,Santos,Brazil,-23.9608,-46.3336,82,11,3,8

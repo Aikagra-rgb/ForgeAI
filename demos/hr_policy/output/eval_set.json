@@ -1,0 +1,318 @@
+{
+  "agent_name": "HRLeaveAssistant",
+  "cases": [
+    {
+      "id": "ans_01",
+      "category": "answerable",
+      "question": "Will I be eligible for FMLA/PPL upon the date of birth or placement of my son or daughter?",
+      "expected_source_docs": [
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "Will I be eligible for FMLA/PPL upon the date of birth or placement of my son or daughter? (Yes)"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 8::c2"
+      ],
+      "rationale": "Grounded in opm_childbirth_adoption_leave.pdf (page 8)"
+    },
+    {
+      "id": "ans_02",
+      "category": "answerable",
+      "question": "Where can an employee find more specific information about taking FMLA leave for military family leave provisions?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf"
+      ],
+      "expected_facts": [
+        "The Employee’s Guide to Military Family Leave under the Family Medical Leave Act (WH1513) contains more specific information"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 19::c0"
+      ],
+      "rationale": "Grounded in dol_fmla_employee_guide.pdf (page 19)"
+    },
+    {
+      "id": "ans_03",
+      "category": "answerable",
+      "question": "Can donated annual leave be used to offset leave advanced for an employee who had a medical emergency to care for an adopted child?",
+      "expected_source_docs": [
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "donated annual leave may be used to liquidate an indebtedness incurred by the leave recipient for advanced leave used because of a medical emergency, such as caring for an adopted or foster child who is seriously ill or injured"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 67::c3"
+      ],
+      "rationale": "Grounded in opm_childbirth_adoption_leave.pdf (page 67)"
+    },
+    {
+      "id": "ans_04",
+      "category": "answerable",
+      "question": "Who is eligible for FMLA leave to care for a person who stood in loco parentis to the employee when the employee was a child?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf"
+      ],
+      "expected_facts": [
+        "An eligible employee is entitled to FMLA leave to care for a person who stood in loco parentis to that employee when the employee was a child."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 7::c3"
+      ],
+      "rationale": "Grounded in dol_fmla_employee_guide.pdf (page 7)"
+    },
+    {
+      "id": "ans_05",
+      "category": "answerable",
+      "question": "What is the typical composition of a job sharing team according to the document?",
+      "expected_source_docs": [
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "A job sharing team generally consists of two employees at the same grade level."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 55::c1"
+      ],
+      "rationale": "The chunk explicitly states that a job sharing team typically includes two employees at the same grade level."
+    },
+    {
+      "id": "ans_06",
+      "category": "answerable",
+      "question": "Under what condition would an employee not be eligible for FMLA leave according to the document?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf"
+      ],
+      "expected_facts": [
+        "If an employee has 50 or more employees within 75 miles of the worksite, they are not eligible for FMLA leave."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 5::c1"
+      ],
+      "rationale": "Grounded in dol_fmla_employee_guide.pdf (page 5)"
+    },
+    {
+      "id": "ans_07",
+      "category": "answerable",
+      "question": "What activities can an employee engage in while taking FMLA leave related to the birth of a child?",
+      "expected_source_docs": [
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "to recover from giving birth, including addressing post-partum depression or other mental health conditions following birth",
+        "to care for the birth mother during her post-birth recovery period, including addressing post-partum depression or other mental health conditions following birth"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 28::c0"
+      ],
+      "rationale": "The chunk explicitly lists the activities that can be covered under FMLA leave related to the birth of a child."
+    },
+    {
+      "id": "ans_08",
+      "category": "answerable",
+      "question": "What should an employee do if their employer retaliates against them for exercising FMLA rights?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf"
+      ],
+      "expected_facts": [
+        "employees should contact the Wage and Hour Division immediately if their employer retaliates against them"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 17::c2"
+      ],
+      "rationale": "Grounded in dol_fmla_employee_guide.pdf (page 17)"
+    },
+    {
+      "id": "ans_09",
+      "category": "answerable",
+      "question": "What is the time frame for an employee to use FMLA/PPL for adoption of a fostered child?",
+      "expected_source_docs": [
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "an employee is pursuing adoption of a child the employee is fostering, the employee may invoke and use FMLA/PPL in the 12-month period following the new placement of the child with the employee for foster care purposes"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 138::c3"
+      ],
+      "rationale": "Grounded in opm_childbirth_adoption_leave.pdf (page 138)"
+    },
+    {
+      "id": "ans_10",
+      "category": "answerable",
+      "question": "What is the minimum number of hours an airline flight attendant must work for an employer to be eligible for FMLA leave?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf"
+      ],
+      "expected_facts": [
+        "The employer must have the employee work at least 1250 hours in the 12 months before taking leave."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 4::c2"
+      ],
+      "rationale": "Grounded in dol_fmla_employee_guide.pdf (page 4)"
+    },
+    {
+      "id": "ref_01",
+      "category": "refusal",
+      "question": "Is there any guidance on how to handle leave requests during a company-wide emergency situation?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_02",
+      "category": "refusal",
+      "question": "Can you clarify the process for reporting a workplace injury under OSHA regulations?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_03",
+      "category": "refusal",
+      "question": "Can you offer advice on how to negotiate a better salary with my current employer?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_04",
+      "category": "refusal",
+      "question": "Can you provide guidance on the eligibility criteria for commercial maritime crew contracts?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_05",
+      "category": "refusal",
+      "question": "Can you provide information on the process for requesting leave under the Family and Medical Leave Act (FMLA)?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "multi_01",
+      "category": "edge_multi_doc",
+      "question": "What information should be included when filing a complaint with WHD regarding FMLA rights, and how does in loco parentis affect FMLA leave provisions for an employee?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf",
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "Your name, address, and phone number",
+        "The name and location of the company where you work",
+        "The circumstances of your FMLA request and your employer’s response",
+        "In loco parentis refers to an individual with day-to-day responsibility for a child's care or financial support"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 17::c1",
+        "opm_childbirth_adoption_leave.pdf::page 38::c0"
+      ],
+      "rationale": "Cross-document synthesis (dol_fmla_employee_guide.pdf + opm_childbirth_adoption_leave.pdf)"
+    },
+    {
+      "id": "multi_02",
+      "category": "edge_multi_doc",
+      "question": "What must an employer do if an employee is taking leave related to the birth of a child under FMLA conditions?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf",
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "The employer must notify the employee if the leave is designated as FMLA leave.",
+        "The employer must inform the employee how much leave will be counted against the FMLA entitlement if possible.",
+        "If the leave is not covered by FMLA, the employer must notify the employee of that determination."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 26::c0",
+        "dol_fmla_employee_guide.pdf::page 11::c0"
+      ],
+      "rationale": "Cross-document synthesis (opm_childbirth_adoption_leave.pdf + dol_fmla_employee_guide.pdf)"
+    },
+    {
+      "id": "multi_03",
+      "category": "edge_multi_doc",
+      "question": "What information should Theo have regarding his FMLA leave usage and adoption process, based on the provided documents?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf",
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "FMLA with substitution of PPL is only available for a new placement with an employee for adoption or foster care."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 129::c2",
+        "dol_fmla_employee_guide.pdf::page 10::c2"
+      ],
+      "rationale": "Cross-document synthesis (opm_childbirth_adoption_leave.pdf + dol_fmla_employee_guide.pdf)"
+    },
+    {
+      "id": "amb_01",
+      "category": "edge_ambiguous",
+      "question": "What are the employee responsibilities during FMLA leave and what must the employer do when notifying an employee about leave designation?",
+      "expected_source_docs": [
+        "dol_fmla_employee_guide.pdf"
+      ],
+      "expected_facts": [
+        "Employer's responsibility to notify about leave designation within five business days"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "dol_fmla_employee_guide.pdf::page 13::c0"
+      ],
+      "rationale": "The reference chunk mentions employee responsibilities during FMLA leave and the employer's responsibility to notify about leave designation, which are key facts to clarify in the question."
+    },
+    {
+      "id": "amb_02",
+      "category": "edge_ambiguous",
+      "question": "Can an employee take FMLA leave for the placement of a foster child, and if so, what are the conditions?",
+      "expected_source_docs": [
+        "opm_childbirth_adoption_leave.pdf"
+      ],
+      "expected_facts": [
+        "Conditions for FMLA leave based on placement",
+        "Definition of 'placement' for FMLA purposes"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "opm_childbirth_adoption_leave.pdf::page 137::c0"
+      ],
+      "rationale": "Ambiguous/underspecified query handling"
+    }
+  ]
+}

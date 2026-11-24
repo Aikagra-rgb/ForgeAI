@@ -1,0 +1,454 @@
+{
+  "agent_name": "MaritimeLogisticsAssistant",
+  "total_cases": 20,
+  "initial_pass_rate": 0.95,
+  "final_pass_rate": 0.95,
+  "passed_cases": 19,
+  "failed_cases": 1,
+  "iterations": [],
+  "final_results": [
+    {
+      "case_id": "ans_01",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "A benchmark suite for liner shipping network design problems and a parser for the instances in c++",
+          "present": true,
+          "evidence": "LINERLIB is a benchmark suite for liner shipping network design problems. It includes an integer programming model and is based on publicly available data and past data from Maersk Line."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_02",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "panamaFee: 345600",
+          "present": true,
+          "evidence": "The Panama fee for a Panamax_2400 vessel class is 345600 [Source: fleet_data.csv]."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_03",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "The fixed port call cost for the port of Hamburg is 18,560.",
+          "present": true,
+          "evidence": "ports.csv"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_04",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "To generate a HIGH capacity case you need to: Multiply TC Rates",
+          "present": true,
+          "evidence": "To generate a HIGH capacity case you need to: Multiply TC Rates by 0.8 and round to nearest thousand."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_05",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "TC rate daily (fixed Cost): 5000",
+          "present": true,
+          "evidence": "TC rate daily (fixed Cost): 5000"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_06",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "PortCallCostFixed: 8064.00",
+          "present": true,
+          "evidence": "ports.csv, row 288"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_07",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "The benchmark suite originates from publicly available data and past data for Maersk Line.",
+          "present": false,
+          "evidence": ""
+        },
+        {
+          "fact": "External data sources are: “Distances between ports - Pub. 151”, National Imagery and Mapping Agency (www.marcon.com/library/resources/DBP/DBP.html).",
+          "present": true,
+          "evidence": "The external data sources used in the benchmark suite for the liner shipping network design model include: - \"Distances between ports - Pub. 151\", National Imagery and Mapping Agency (www.marcon.com/library/resources/DBP/DBP.html)"
+        },
+        {
+          "fact": "The Hamburg Index, Vereinigung Hamburger Schiffsmakler und Schiffsagenten, (www.vhss.de).",
+          "present": true,
+          "evidence": "The external data sources used in the benchmark suite for the liner shipping network design model include: - The Hamburg Index, Vereinigung Hamburger Schiffsmakler und Schiffsagenten (www.vhss.de)"
+        },
+        {
+          "fact": "\"Charter Rates 2000-2010\", Alphaliner charter rates 2000-2010",
+          "present": true,
+          "evidence": "The external data sources used in the benchmark suite for the liner shipping network design model include: - \"Charter Rates 2000-2010\", Alphaliner charter rates 2000-2010 (www.alphaliner.com)"
+        }
+      ],
+      "fact_score": 0.75,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_08",
+      "category": "answerable",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": false,
+      "fact_checks": [
+        {
+          "fact": "PortCallCostFixed: 21497.00",
+          "present": false,
+          "evidence": "The provided context does not contain information about the fixed port call cost for the port of Tilbury."
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "wrong_refusal",
+      "failure_reason": "Agent wrongly refused an in-scope, answerable question."
+    },
+    {
+      "case_id": "ans_09",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Added an additional Demand_WorldSmall file as demands above 1000 FFe where wrongfully truncated to a decimal number of 1.xx. Original file is kept for benchmarks and new correct demand file added as Demand_WorldSmall_Fixed_Sep.csv",
+          "present": true,
+          "evidence": "Added an additional Demand_WorldSmall file as demands above 1000 FFe where wrongfully truncated to a decimal number of 1.xx. Original file is kept for benchmarks and new correct demand file added as Demand_WorldSmall_Fixed_Sep.csv"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_10",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Row 418: UNLocode: MXTAM | name: Tampico | Country: Mexico | Cabotage_Region: Mexico | D_Region: US West Coast | Longitude: 22.15 | Latitude: -97.52",
+          "present": true,
+          "evidence": "The answer correctly states the longitude and latitude for Tampico, Mexico."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_01",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. The provided context does not contain information about current regulations for shipping hazardous materials. [Source: linerlib_readme.md]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_02",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. The provided context does not contain any information about electronic documentation systems or their implementation at various ports. [Source: linerlib_readme.md, ports.csv]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_03",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_04",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. The provided context does not contain any information related to maritime labor laws. [Source: ports.csv, linerlib_readme.md]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_05",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_01",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "TC rate daily (fixed Cost) for Feeder_450 is 5000",
+          "present": true,
+          "evidence": "TC rate daily (fixed Cost): 5000"
+        },
+        {
+          "fact": "TC rate daily (fixed Cost) for Feeder_800 is 8000",
+          "present": true,
+          "evidence": "TC rate daily (fixed Cost): 8000"
+        },
+        {
+          "fact": "PanamaFee for Feeder_800 is 115200",
+          "present": true,
+          "evidence": "panamaFee: 115200"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_02",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "TC rate daily (fixed Cost) for Super_panamax is 55000",
+          "present": true,
+          "evidence": "TC rate daily (fixed Cost): 55000"
+        },
+        {
+          "fact": "TC rate daily (fixed Cost) for Panamax_2400 is 21000",
+          "present": true,
+          "evidence": "TC rate daily (fixed Cost): 21000"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_03",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "draft of the port in Piraeus is 12.5",
+          "present": true,
+          "evidence": "Piraeus draft: 12.5"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "amb_01",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "PortCallCostFixed for Douala",
+          "present": true,
+          "evidence": "PortCallCostFixed: 24272.00"
+        },
+        {
+          "fact": "PortCallCostPerFFE for Douala",
+          "present": true,
+          "evidence": "PortCallCostPerFFE: 9.00"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "amb_02",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "suezFee for Super_panamax",
+          "present": true,
+          "evidence": "The Suez fee for a Super_panamax vessel is $1,035,376."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    }
+  ],
+  "budget": {
+    "max_tokens": 400000,
+    "max_latency_seconds": 1200.0,
+    "tokens_used": 155928,
+    "latency_seconds": 220.96799879986793,
+    "stopped_early": false,
+    "stop_reason": ""
+  }
+}

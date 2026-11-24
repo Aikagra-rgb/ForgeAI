@@ -1,0 +1,464 @@
+{
+  "agent_name": "Coastal Reefer Operations Assistant",
+  "total_cases": 20,
+  "initial_pass_rate": 0.9,
+  "final_pass_rate": 0.9,
+  "passed_cases": 18,
+  "failed_cases": 2,
+  "iterations": [],
+  "final_results": [
+    {
+      "case_id": "ans_01",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Supply and return air temperature probes must be calibrated every 6 months.",
+          "present": true,
+          "evidence": "Supply and return air temperature probes must be calibrated every **6 months** using a certified reference thermometer with accuracy within ±0.2°C."
+        },
+        {
+          "fact": "Signed PTI logs must be retained in the terminal compliance archive for 5 years.",
+          "present": true,
+          "evidence": "Signed PTI logs and excursion audit sheets must be retained in the terminal compliance archive for **5 years**."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_02",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+          "present": true,
+          "evidence": "According to the retrieved context from [Source: hazardous_cargo_exceptions.txt], the minimum horizontal segregation required between containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) hazardous cargo and energized 440V reefer power racks is at least 6 meters."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_03",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "reefer_plug_daily_usd: 95",
+          "present": true,
+          "evidence": "The reefer plug daily charge in USD for the terminal in Rotterdam is $95. [Source: terminal_tariffs.csv]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_04",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Unacknowledged reefer alarms escalate to the Regional Cold-Chain Manager after 30 minutes.",
+          "present": true,
+          "evidence": "According to the provided context, unacknowledged reefer alarms escalate to the Regional Cold-Chain Manager after **30 minutes**."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_05",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Signed PTI logs and excursion audit sheets must be retained in the terminal compliance archive for 5 years.",
+          "present": true,
+          "evidence": "inspection_checklist.md | chunk 2"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_06",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Fuel reserves must support a minimum of 72 continuous hours of Tier 1 and Tier 2 operation.",
+          "present": true,
+          "evidence": "Emergency Backup Generator Cutover: Fuel reserves must support a minimum of 72 continuous hours of Tier 1 and Tier 2 operation."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_07",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "reefer_plug_daily_usd: 94",
+          "present": true,
+          "evidence": "The reefer plug daily charge in USD for the terminal in Antwerp is $94. [Source: terminal_tariffs.csv]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_08",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Maintain chilled produce (Class C) between 0°C and 4°C",
+          "present": true,
+          "evidence": "The temperature range for maintaining chilled produce (Class C) is between 0°C and 4°C."
+        },
+        {
+          "fact": "Relative humidity set to 85–90%",
+          "present": true,
+          "evidence": "The relative humidity setting required is 85–90%."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_09",
+      "category": "answerable",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "total reefer charge equals 500 * (1 + 20 / 100)",
+          "present": false,
+          "evidence": "The calculation used 5 * 100 * (1 + 20 / 100) instead of 500 * (1 + 20 / 100)."
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (0%): ['total reefer charge equals 500 * (1 + 20 / 100)']"
+    },
+    {
+      "case_id": "ans_10",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "reefer_plug_daily_usd: 125",
+          "present": true,
+          "evidence": "terminal_tariffs.csv"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_01",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. The provided context does not cover restrictions or additional requirements for reefer units during extreme weather conditions."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_02",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. My functions are limited to looking up terminal codes, coordinates, reefer plug-in tariffs, free dwell days, and temperature limits from the terminal tariffs CSV, calculating multi-day dwell and power surcharge costs, checking live terminal weather conditions, and answering cold-chain SOP, hazardous cargo, and pre-trip inspection questions from our policy documents. Scheduling a reefer unit for a specific terminal is not within these capabilities. Please refer to your terminal operations manual or contact your terminal dispatch team for assistance."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_03",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I cannot assist with that request because it is outside my scope. The provided context does not contain specific policies regarding reefer unit maintenance and repairs."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_04",
+      "category": "refusal",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": false,
+      "fact_checks": [
+        {
+          "fact": "Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+          "present": true,
+          "evidence": "IMDG Segregation Near Reefer Power Banks"
+        },
+        {
+          "fact": "Combined Reefer + Class 1 Explosives stacking is strictly prohibited in all coastal cold-chain zones.",
+          "present": true,
+          "evidence": "IMDG Segregation Near Reefer Power Banks"
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "wrong_refusal",
+      "failure_reason": "Agent answered an out-of-scope/unsupported question instead of refusing."
+    },
+    {
+      "case_id": "ref_05",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_01",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Containers carrying IMDG Class 2.1 or Class 3 cargo must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+          "present": true,
+          "evidence": "Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks."
+        },
+        {
+          "fact": "Unacknowledged reefer alarms escalate to the Terminal Duty Engineer after 15 minutes.",
+          "present": true,
+          "evidence": "Unacknowledged reefer alarms escalate to the Terminal Duty Engineer after 15 minutes."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_02",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Containers carrying IMDG Class 2.1 or Class 3 must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+          "present": true,
+          "evidence": "Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_03",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "reefer_plug_daily_usd: 125",
+          "present": true,
+          "evidence": "terminal_tariffs.csv"
+        },
+        {
+          "fact": "power_surcharge_pct: 18",
+          "present": true,
+          "evidence": "terminal_tariffs.csv"
+        },
+        {
+          "fact": "Probe calibration frequency: every 6 months",
+          "present": true,
+          "evidence": "inspection_checklist.md"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "amb_01",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Containers carrying IMDG Class 2.1 or Class 3 must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+          "present": true,
+          "evidence": "Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks."
+        },
+        {
+          "fact": "Active Pharmaceutical (Class P) reefers are included in Tier 1 shore power brownout priority tiers.",
+          "present": true,
+          "evidence": "Tier 1 (Highest Priority, never shed): Active Pharmaceutical (Class P) reefers."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "amb_02",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "terminal's free dwell days",
+          "present": true,
+          "evidence": "3 free_dwell_days: 3"
+        },
+        {
+          "fact": "reefer plug-in daily usd",
+          "present": true,
+          "evidence": "reefer_plug_daily_usd: 100"
+        },
+        {
+          "fact": "power surcharge pct",
+          "present": true,
+          "evidence": "power_surcharge_pct: 10"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    }
+  ],
+  "budget": {
+    "max_tokens": 400000,
+    "max_latency_seconds": 1200.0,
+    "tokens_used": 125373,
+    "latency_seconds": 212.5341354998527,
+    "stopped_early": false,
+    "stop_reason": ""
+  }
+}

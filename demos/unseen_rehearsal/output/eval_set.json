@@ -1,0 +1,318 @@
+{
+  "agent_name": "ITAssetAssistant",
+  "cases": [
+    {
+      "id": "ans_01",
+      "category": "answerable",
+      "question": "What discount is applied for an order of 7 units of hardware assets?",
+      "expected_source_docs": [
+        "it_asset_policy.md"
+      ],
+      "expected_facts": [
+        "Orders of 5 to 9 units receive a 10% bulk discount on the subtotal."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "it_asset_policy.md::sec::c0"
+      ],
+      "rationale": "Grounded in it_asset_policy.md (chunk 1)"
+    },
+    {
+      "id": "ans_02",
+      "category": "answerable",
+      "question": "What is the unit price in USD and stock quantity for the Logitech Rally Bar?",
+      "expected_source_docs": [
+        "hardware_inventory.csv"
+      ],
+      "expected_facts": [
+        "unit_price_usd: 2900",
+        "stock_qty: 2"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hardware_inventory.csv::rows_5_8"
+      ],
+      "rationale": "Grounded in hardware_inventory.csv (rows 5-8)"
+    },
+    {
+      "id": "ans_03",
+      "category": "answerable",
+      "question": "What is the maximum duration an employee can borrow a standard loaner laptop under the IT support SLA guidelines?",
+      "expected_source_docs": [
+        "support_sla.txt"
+      ],
+      "expected_facts": [
+        "Employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "support_sla.txt::sec::c0"
+      ],
+      "rationale": "Grounded in support_sla.txt (chunk 1)"
+    },
+    {
+      "id": "ans_04",
+      "category": "answerable",
+      "question": "What is the bulk discount rate for orders of 10 or more units?",
+      "expected_source_docs": [
+        "it_asset_policy.md"
+      ],
+      "expected_facts": [
+        "15% bulk discount on the subtotal for orders of 10 or more units"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "it_asset_policy.md::sec::c1"
+      ],
+      "rationale": "Grounded in it_asset_policy.md (chunk 2)"
+    },
+    {
+      "id": "ans_05",
+      "category": "answerable",
+      "question": "What is the unit price of the ThinkPad X1 Carbon Gen 12 laptop?",
+      "expected_source_docs": [
+        "hardware_inventory.csv"
+      ],
+      "expected_facts": [
+        "unit_price_usd: 1650"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hardware_inventory.csv::rows_1_4"
+      ],
+      "rationale": "Grounded in hardware_inventory.csv (rows 1-4)"
+    },
+    {
+      "id": "ans_06",
+      "category": "answerable",
+      "question": "How long can a loaner laptop be kept before returning it after receiving replacement hardware?",
+      "expected_source_docs": [
+        "support_sla.txt"
+      ],
+      "expected_facts": [
+        "Loaners must be returned within 2 business days of receiving replacement hardware."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "support_sla.txt::sec::c1"
+      ],
+      "rationale": "Grounded in support_sla.txt (chunk 2)"
+    },
+    {
+      "id": "ans_07",
+      "category": "answerable",
+      "question": "What is the bulk discount for orders of 10 or more units and what is the staging and imaging fee per order?",
+      "expected_source_docs": [
+        "it_asset_policy.md"
+      ],
+      "expected_facts": [
+        "Orders of 10 or more units receive a 15% bulk discount on the subtotal.",
+        "A flat USD 75 staging and imaging fee applies per order regardless of quantity."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "it_asset_policy.md::sec::c1"
+      ],
+      "rationale": "Grounded in it_asset_policy.md (chunk 2)"
+    },
+    {
+      "id": "ans_08",
+      "category": "answerable",
+      "question": "What is the unit price of the ThinkPad X1 Carbon Gen 12 laptop?",
+      "expected_source_docs": [
+        "hardware_inventory.csv"
+      ],
+      "expected_facts": [
+        "unit_price_usd: 1650"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hardware_inventory.csv::rows_1_4"
+      ],
+      "rationale": "Grounded in hardware_inventory.csv (rows 1-4)"
+    },
+    {
+      "id": "ans_09",
+      "category": "answerable",
+      "question": "What is the maximum duration an employee can borrow a standard loaner laptop under the loaner equipment policy?",
+      "expected_source_docs": [
+        "support_sla.txt"
+      ],
+      "expected_facts": [
+        "Employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "support_sla.txt::sec::c0"
+      ],
+      "rationale": "Grounded in support_sla.txt (chunk 1)"
+    },
+    {
+      "id": "ans_10",
+      "category": "answerable",
+      "question": "What discount is applied for an order of 7 units of hardware assets?",
+      "expected_source_docs": [
+        "it_asset_policy.md"
+      ],
+      "expected_facts": [
+        "Orders of 5 to 9 units receive a 10% bulk discount on the subtotal."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "it_asset_policy.md::sec::c0"
+      ],
+      "rationale": "Grounded in it_asset_policy.md (chunk 1)"
+    },
+    {
+      "id": "ref_01",
+      "category": "refusal",
+      "question": "Can you provide a list of all employees who have logged into the system last week?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_02",
+      "category": "refusal",
+      "question": "How can I schedule a meeting with the IT department for hardware maintenance?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_03",
+      "category": "refusal",
+      "question": "Could you draft an email to a vendor requesting a quote for new hardware?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_04",
+      "category": "refusal",
+      "question": "What are the company's policies regarding data privacy and security for IT assets?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_05",
+      "category": "refusal",
+      "question": "How do I reset my password if I forget it?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "multi_01",
+      "category": "edge_multi_doc",
+      "question": "What is the total cost for an order of 15 Dell UltraSharp 27 4K monitors, including the staging and imaging fee, and does it require VP Finance sign-off?",
+      "expected_source_docs": [
+        "hardware_inventory.csv",
+        "it_asset_policy.md"
+      ],
+      "expected_facts": [
+        "Dell UltraSharp 27 4K monitor unit price is $580",
+        "Order of 10 or more units receives a 15% bulk discount",
+        "USD 75 staging and imaging fee applies per order",
+        "Orders exceeding USD 5,000 require VP Finance sign-off"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hardware_inventory.csv::rows_1_4",
+        "it_asset_policy.md::sec::c1"
+      ],
+      "rationale": "Cross-document synthesis (hardware_inventory.csv + it_asset_policy.md)"
+    },
+    {
+      "id": "multi_02",
+      "category": "edge_multi_doc",
+      "question": "What is the total cost for purchasing 10 Lenovo ThinkCentre M90q units, including the staging and imaging fee, and does it require VP Finance sign-off?",
+      "expected_source_docs": [
+        "hardware_inventory.csv",
+        "it_asset_policy.md"
+      ],
+      "expected_facts": [
+        "A flat USD 75 staging and imaging fee applies per order regardless of quantity.",
+        "Orders exceeding USD 5,000 require VP Finance sign-off."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "it_asset_policy.md::sec::c1",
+        "hardware_inventory.csv::rows_5_8"
+      ],
+      "rationale": "Cross-document synthesis (it_asset_policy.md + hardware_inventory.csv)"
+    },
+    {
+      "id": "multi_03",
+      "category": "edge_multi_doc",
+      "question": "What is the maximum loan period for an iPad Pro 11 M4, and which department is responsible for its maintenance under the support SLA?",
+      "expected_source_docs": [
+        "hardware_inventory.csv",
+        "support_sla.txt"
+      ],
+      "expected_facts": [
+        "iPad Pro 11 M4 is managed by the Field Ops department"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "support_sla.txt::sec::c1",
+        "hardware_inventory.csv::rows_5_8"
+      ],
+      "rationale": "Cross-document synthesis (support_sla.txt + hardware_inventory.csv)"
+    },
+    {
+      "id": "amb_01",
+      "category": "edge_ambiguous",
+      "question": "What is the maximum duration for which an employee can use a loaner laptop under the given SLA guidelines?",
+      "expected_source_docs": [
+        "support_sla.txt"
+      ],
+      "expected_facts": [
+        "14 calendar days"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "support_sla.txt::sec::c0"
+      ],
+      "rationale": "The reference chunk mentions both 14 calendar days and 2 business days as return periods for loaner laptops, creating ambiguity."
+    },
+    {
+      "id": "amb_02",
+      "category": "edge_ambiguous",
+      "question": "What is the current stock quantity and unit price of the Logitech Rally Bar in the Facilities department?",
+      "expected_source_docs": [
+        "hardware_inventory.csv"
+      ],
+      "expected_facts": [
+        "stock_qty: 2",
+        "unit_price_usd: 2900"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hardware_inventory.csv::rows_5_8"
+      ],
+      "rationale": "Ambiguous/underspecified query handling"
+    }
+  ]
+}

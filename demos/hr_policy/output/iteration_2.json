@@ -1,0 +1,31 @@
+{
+  "iteration": 2,
+  "score_before": 0.75,
+  "score_after": 0.75,
+  "passed_before": 15,
+  "passed_after": 15,
+  "total_cases": 20,
+  "failure_breakdown": {
+    "prompt_defect": 4,
+    "wrong_refusal": 1
+  },
+  "addressed_case_ids": [
+    "ref_05"
+  ],
+  "changes": [
+    {
+      "component": "system_prompt.refusal_policy",
+      "before": "For any request outside the documented scope and selected tools (including drafting emails, general ungrounded advice, or external actions like ticket submission), clearly and firmly refuse using explicit refusal language (e.g., 'I cannot assist with that request because it is outside my scope.'). Do NOT attempt to fulfill or partially answer out-of-scope requests, and never mention 'clarifying questions'.",
+      "after": "For any request outside the documented scope and selected tools (including drafting emails, general ungrounded advice, or external actions like ticket submission), refuse using explicit refusal language (e.g., 'I cannot assist with that request because it is outside my scope.'). Do NOT attempt to fulfill or partially answer out-of-scope requests, and never mention 'clarifying questions'.",
+      "reason": "Corrected the refusal policy to ensure clear and firm refusal for out-of-scope requests without attempting partial answers or clarification."
+    },
+    {
+      "component": "rollback",
+      "before": "v2",
+      "after": "v1",
+      "reason": "Rolled back patch because pass rate dropped (75.0% -> 70.0%)."
+    }
+  ],
+  "tokens_used": 60351,
+  "latency_ms": 115987.97469999408
+}

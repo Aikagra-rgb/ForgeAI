@@ -1,0 +1,118 @@
+{
+  "docs_dir": "demos\\unseen_rehearsal_2\\docs",
+  "total_files": 4,
+  "documents": [
+    {
+      "filename": "cold_chain_sop.md",
+      "file_type": "md",
+      "title": "Coastal Cold-Chain & Reefer Standard Operating Procedure (SOP)",
+      "headings": [
+        "Coastal Cold-Chain & Reefer Standard Operating Procedure (SOP)",
+        "1. Cargo Temperature Bands & Excursion Thresholds",
+        "2. Dwell Fee & Power Surcharge Billing Formula",
+        "3. Alarm Escalation Timelines"
+      ],
+      "summary_bullets": [
+        "- **Pharmaceuticals (Class P):** Maintain strictly between **2°C and 8°C**. Any deviation exceeding ±1.5°C for more than 20 minutes triggers a Critical Excursion Alert.",
+        "- **Frozen Seafood (Class F):** Maintain at or below **-18°C**. Temperature rising above -15°C for more than 45 minutes requires immediate reefer unit inspection.",
+        "- **Chilled Produce (Class C):** Maintain between **0°C and 4°C** with relative humidity set to 85–90%."
+      ],
+      "word_count": 196,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    },
+    {
+      "filename": "hazardous_cargo_exceptions.txt",
+      "file_type": "txt",
+      "title": "HAZARDOUS CARGO EXCEPTIONS & BROWNOUT PRIORITY RULES",
+      "headings": [
+        "HAZARDOUS CARGO EXCEPTIONS & BROWNOUT PRIORITY RULES"
+      ],
+      "summary_bullets": [
+        "HAZARDOUS CARGO EXCEPTIONS & BROWNOUT PRIORITY RULES",
+        "1. IMDG Segregation Near Reefer Power Banks:",
+        "- Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks."
+      ],
+      "word_count": 154,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    },
+    {
+      "filename": "inspection_checklist.md",
+      "file_type": "md",
+      "title": "Reefer Pre-Trip Inspection (PTI) & Compliance Checklist",
+      "headings": [
+        "Reefer Pre-Trip Inspection (PTI) & Compliance Checklist",
+        "1. Pre-Trip Inspection Requirements",
+        "2. Probe Calibration & Record Retention",
+        "3. External Systems Outside This Helpdesk"
+      ],
+      "summary_bullets": [
+        "- Every empty reefer container must pass a full Pre-Trip Inspection (PTI) within 7 days prior to gate-out for cold-chain loading.",
+        "- Inspect condenser coils, evaporator fan amperage, door gasket seal integrity, and fresh-air vent closure.",
+        "- Supply and return air temperature probes must be calibrated every **6 months** using a certified reference thermometer with accuracy within ±0.2°C."
+      ],
+      "word_count": 144,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    },
+    {
+      "filename": "terminal_tariffs.csv",
+      "file_type": "csv",
+      "title": "Terminal Tariffs",
+      "headings": [],
+      "summary_bullets": [],
+      "word_count": 114,
+      "csv_columns": [
+        "terminal_code",
+        "city",
+        "country",
+        "latitude",
+        "longitude",
+        "reefer_plug_daily_usd",
+        "power_surcharge_pct",
+        "free_dwell_days",
+        "max_temp_c"
+      ],
+      "csv_row_count": 12,
+      "csv_sample_rows": [
+        {
+          "terminal_code": "CC-RTM",
+          "city": "Rotterdam",
+          "country": "Netherlands",
+          "latitude": "51.9244",
+          "longitude": "4.4777",
+          "reefer_plug_daily_usd": "95",
+          "power_surcharge_pct": "12",
+          "free_dwell_days": "3",
+          "max_temp_c": "8"
+        },
+        {
+          "terminal_code": "CC-SGP",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": "1.2644",
+          "longitude": "103.8220",
+          "reefer_plug_daily_usd": "110",
+          "power_surcharge_pct": "15",
+          "free_dwell_days": "2",
+          "max_temp_c": "6"
+        },
+        {
+          "terminal_code": "CC-BUS",
+          "city": "Busan",
+          "country": "South Korea",
+          "latitude": "35.1028",
+          "longitude": "129.0403",
+          "reefer_plug_daily_usd": "85",
+          "power_surcharge_pct": "10",
+          "free_dwell_days": "3",
+          "max_temp_c": "8"
+        }
+      ]
+    }
+  ]
+}

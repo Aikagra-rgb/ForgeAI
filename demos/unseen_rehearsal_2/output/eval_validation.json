@@ -1,0 +1,134 @@
+{
+  "total_non_refusal_cases": 15,
+  "cases_validated": 15,
+  "total_facts_checked": 24,
+  "facts_kept": 22,
+  "facts_dropped": 2,
+  "cases_regenerated": 0,
+  "case_details": [
+    {
+      "case_id": "ans_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_04",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_05",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_06",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_07",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_08",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_09",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "base_plug_in_fee equals 5 * 100"
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_10",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "The terminal with the highest reefer plug daily rate is CC-MEL with $105 per day."
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 3,
+      "kept_fact_count": 3,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 3,
+      "kept_fact_count": 3,
+      "dropped_facts": [],
+      "regenerated": false
+    }
+  ]
+}

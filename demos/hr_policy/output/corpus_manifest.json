@@ -1,0 +1,62 @@
+{
+  "docs_dir": "demos\\hr_policy\\docs",
+  "total_files": 2,
+  "documents": [
+    {
+      "filename": "dol_fmla_employee_guide.pdf",
+      "file_type": "pdf",
+      "title": "WAGE AND HOUR DIVISION",
+      "headings": [
+        "WAGE AND HOUR DIVISION",
+        "UNITED STATES DEPARTMENT OF LABOR",
+        "YES",
+        "NO",
+        "YES",
+        "YES",
+        "YES",
+        "NO",
+        "NO",
+        "NO",
+        "OR",
+        "STEP 1"
+      ],
+      "summary_bullets": [
+        "The Employee’s Guide to the Family and Medical Leave Act 1",
+        "When you or a loved one experiences a serious health condition",
+        "that requires you to take time off from work, the stress from"
+      ],
+      "word_count": 3740,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    },
+    {
+      "filename": "opm_childbirth_adoption_leave.pdf",
+      "file_type": "pdf",
+      "title": "APRIL 2025",
+      "headings": [
+        "APRIL 2025",
+        "B.",
+        "C.",
+        "B.",
+        "C.",
+        "E.",
+        "F.",
+        "I.",
+        "J.",
+        "L.",
+        "B.",
+        "C."
+      ],
+      "summary_bullets": [
+        "Note: The guidance in this handbook has been edited to align with Executive Order 14168",
+        "Defending Women from Gender Ideology Extremism and Restoring Biological Truth to",
+        "the Federal Government and the Presidentʼs memorandum Return to In-Person Work."
+      ],
+      "word_count": 47219,
+      "csv_columns": [],
+      "csv_row_count": 0,
+      "csv_sample_rows": []
+    }
+  ]
+}

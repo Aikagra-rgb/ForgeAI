@@ -1,0 +1,10 @@
+IT SUPPORT SLA AND LOANER GUIDELINES
+
+Response Time SLAs:
+- Severity P1 (Critical outage affecting multiple users or servers): 30 minutes initial response, 4 hours target resolution.
+- Severity P2 (Single user blocked from primary workstation): 4 hours initial response, 1 business day target resolution.
+- Severity P3 (Accessory request or non-blocking issue): 1 business day initial response, 3 business days target resolution.
+
+Loaner Equipment:
+- Employees with a confirmed P1 or P2 hardware failure may borrow a standard loaner laptop for up to 14 calendar days while awaiting repair or replacement.
+- Loaners must be returned within 2 business days of receiving replacement hardware.

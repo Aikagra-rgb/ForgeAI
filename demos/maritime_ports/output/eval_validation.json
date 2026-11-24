@@ -1,0 +1,149 @@
+{
+  "total_non_refusal_cases": 15,
+  "cases_validated": 15,
+  "total_facts_checked": 33,
+  "facts_kept": 22,
+  "facts_dropped": 14,
+  "cases_regenerated": 4,
+  "case_details": [
+    {
+      "case_id": "ans_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "Brouer, Berit D.; Alvarez, J. Fernando; Plum, Christian Edinger Munk; Pisinger, David; Sigurd, Mikkel M. developed a base integer programming model and benchmark suite for liner shipping network design.",
+        "LINERLIB is a benchmark suite for liner shipping network design problems and a parser for the instances in C++"
+      ],
+      "regenerated": true
+    },
+    {
+      "case_id": "ans_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "PortCallCostFixed: 18560.00",
+        "PortCallCostFixed: 18560.00"
+      ],
+      "regenerated": true
+    },
+    {
+      "case_id": "ans_04",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_05",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_06",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_07",
+      "chunk_ids_valid": true,
+      "original_fact_count": 4,
+      "kept_fact_count": 4,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_08",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_09",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_10",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "Longitude: 22.15",
+        "Latitude: -97.52",
+        "Longitude: 22.15",
+        "Latitude: -97.52"
+      ],
+      "regenerated": true
+    },
+    {
+      "case_id": "multi_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 3,
+      "kept_fact_count": 3,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "TC rate daily (fixed Cost) for Panamax_2400 is 21000"
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 4,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "Bunker ton per day at designSpeed for Super_panamax",
+        "TC rate daily (fixed Cost) for Super_panamax",
+        "panamaFee",
+        "suezFee",
+        "TC rate daily (fixed Cost) for Super_panamax"
+      ],
+      "regenerated": true
+    }
+  ]
+}

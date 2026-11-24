@@ -1,0 +1,318 @@
+{
+  "agent_name": "Coastal Reefer Operations Assistant",
+  "cases": [
+    {
+      "id": "ans_01",
+      "category": "answerable",
+      "question": "How often must the supply and return air temperature probes be calibrated, and for how long must PTI logs be retained?",
+      "expected_source_docs": [
+        "inspection_checklist.md"
+      ],
+      "expected_facts": [
+        "Supply and return air temperature probes must be calibrated every 6 months.",
+        "Signed PTI logs must be retained in the terminal compliance archive for 5 years."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "inspection_checklist.md::sec::c0"
+      ],
+      "rationale": "Grounded in inspection_checklist.md (chunk 1)"
+    },
+    {
+      "id": "ans_02",
+      "category": "answerable",
+      "question": "What is the minimum horizontal segregation required between containers carrying IMDG Class 2.1 or Class 3 hazardous cargo and energized 440V reefer power racks?",
+      "expected_source_docs": [
+        "hazardous_cargo_exceptions.txt"
+      ],
+      "expected_facts": [
+        "Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hazardous_cargo_exceptions.txt::sec::c0"
+      ],
+      "rationale": "Grounded in hazardous_cargo_exceptions.txt (chunk 1)"
+    },
+    {
+      "id": "ans_03",
+      "category": "answerable",
+      "question": "What is the reefer plug daily charge in USD for the terminal in Rotterdam?",
+      "expected_source_docs": [
+        "terminal_tariffs.csv"
+      ],
+      "expected_facts": [
+        "reefer_plug_daily_usd: 95"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "terminal_tariffs.csv::rows_1_4"
+      ],
+      "rationale": "Grounded in terminal_tariffs.csv (rows 1-4)"
+    },
+    {
+      "id": "ans_04",
+      "category": "answerable",
+      "question": "How long does it take for unacknowledged reefer alarms to escalate to the Regional Cold-Chain Manager?",
+      "expected_source_docs": [
+        "cold_chain_sop.md"
+      ],
+      "expected_facts": [
+        "Unacknowledged reefer alarms escalate to the Regional Cold-Chain Manager after 30 minutes."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "cold_chain_sop.md::sec::c2"
+      ],
+      "rationale": "Grounded in cold_chain_sop.md (chunk 3)"
+    },
+    {
+      "id": "ans_05",
+      "category": "answerable",
+      "question": "How long must signed PTI logs and excursion audit sheets be retained in the terminal compliance archive?",
+      "expected_source_docs": [
+        "inspection_checklist.md"
+      ],
+      "expected_facts": [
+        "Signed PTI logs and excursion audit sheets must be retained in the terminal compliance archive for 5 years."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "inspection_checklist.md::sec::c1"
+      ],
+      "rationale": "Grounded in inspection_checklist.md (chunk 2)"
+    },
+    {
+      "id": "ans_06",
+      "category": "answerable",
+      "question": "What is the minimum duration of fuel reserves required for Tier 1 and Tier 2 reefer loads during an emergency backup generator cutover?",
+      "expected_source_docs": [
+        "hazardous_cargo_exceptions.txt"
+      ],
+      "expected_facts": [
+        "Fuel reserves must support a minimum of 72 continuous hours of Tier 1 and Tier 2 operation."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hazardous_cargo_exceptions.txt::sec::c1"
+      ],
+      "rationale": "Grounded in hazardous_cargo_exceptions.txt (chunk 2)"
+    },
+    {
+      "id": "ans_07",
+      "category": "answerable",
+      "question": "What is the reefer plug daily charge in USD for the terminal in Antwerp?",
+      "expected_source_docs": [
+        "terminal_tariffs.csv"
+      ],
+      "expected_facts": [
+        "reefer_plug_daily_usd: 94"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "terminal_tariffs.csv::rows_9_12"
+      ],
+      "rationale": "Grounded in terminal_tariffs.csv (rows 9-12)"
+    },
+    {
+      "id": "ans_08",
+      "category": "answerable",
+      "question": "What is the temperature range for maintaining chilled produce (Class C) and what is the relative humidity setting required?",
+      "expected_source_docs": [
+        "cold_chain_sop.md"
+      ],
+      "expected_facts": [
+        "Maintain chilled produce (Class C) between 0°C and 4°C with relative humidity set to 85–90%"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "cold_chain_sop.md::sec::c0"
+      ],
+      "rationale": "Grounded in cold_chain_sop.md (chunk 1)"
+    },
+    {
+      "id": "ans_09",
+      "category": "answerable",
+      "question": "What is the reefer plug-in charge for a container with a chargeable dwell of 5 days if the daily reefer plug-in rate is $100 and the power surcharge percentage is 20%?",
+      "expected_source_docs": [
+        "cold_chain_sop.md"
+      ],
+      "expected_facts": [
+        "total reefer charge equals 500 * (1 + 20 / 100)"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "cold_chain_sop.md::sec::c1"
+      ],
+      "rationale": "Grounded in cold_chain_sop.md (chunk 2)"
+    },
+    {
+      "id": "ans_10",
+      "category": "answerable",
+      "question": "What is the reefer plug daily rate in USD for terminal CC-LAX?",
+      "expected_source_docs": [
+        "terminal_tariffs.csv"
+      ],
+      "expected_facts": [
+        "reefer_plug_daily_usd: 125"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "terminal_tariffs.csv::rows_5_8"
+      ],
+      "rationale": "Grounded in terminal_tariffs.csv (rows 5-8)"
+    },
+    {
+      "id": "ref_01",
+      "category": "refusal",
+      "question": "Are there any restrictions or additional requirements for reefer units during extreme weather conditions not covered in the policy documents?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_02",
+      "category": "refusal",
+      "question": "How do I schedule a reefer unit for a specific terminal?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_03",
+      "category": "refusal",
+      "question": "What are the current policies regarding reefer unit maintenance and repairs?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_04",
+      "category": "refusal",
+      "question": "Could you tell me about the procedures for handling hazardous cargo at the terminals?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "ref_05",
+      "category": "refusal",
+      "question": "Can you assist with understanding the implications of the new terminal policies on reefer operations during non-working hours?",
+      "expected_source_docs": [],
+      "expected_facts": [
+        "Politely refuse or state that the topic is out of scope / unsupported."
+      ],
+      "should_refuse": true,
+      "source_chunk_ids": [],
+      "rationale": "Out-of-scope / unsupported topic refusal check"
+    },
+    {
+      "id": "multi_01",
+      "category": "edge_multi_doc",
+      "question": "What is the minimum horizontal segregation required between containers carrying IMDG Class 2.1 or Class 3 cargo and reefer power racks, and which personnel are notified after 15 minutes of an unacknowledged reefer alarm?",
+      "expected_source_docs": [
+        "cold_chain_sop.md",
+        "hazardous_cargo_exceptions.txt"
+      ],
+      "expected_facts": [
+        "Containers carrying IMDG Class 2.1 or Class 3 cargo must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+        "Unacknowledged reefer alarms escalate to the Terminal Duty Engineer after 15 minutes."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "cold_chain_sop.md::sec::c2",
+        "hazardous_cargo_exceptions.txt::sec::c0"
+      ],
+      "rationale": "Cross-document synthesis (cold_chain_sop.md + hazardous_cargo_exceptions.txt)"
+    },
+    {
+      "id": "multi_02",
+      "category": "edge_multi_doc",
+      "question": "What is the minimum horizontal segregation required for containers carrying IMDG Class 2.1 or Class 3 near reefer power racks at the terminal with the highest reefer plug daily rate?",
+      "expected_source_docs": [
+        "hazardous_cargo_exceptions.txt",
+        "terminal_tariffs.csv"
+      ],
+      "expected_facts": [
+        "Containers carrying IMDG Class 2.1 or Class 3 must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "terminal_tariffs.csv::rows_9_12",
+        "hazardous_cargo_exceptions.txt::sec::c0"
+      ],
+      "rationale": "Cross-document synthesis (terminal_tariffs.csv + hazardous_cargo_exceptions.txt)"
+    },
+    {
+      "id": "multi_03",
+      "category": "edge_multi_doc",
+      "question": "What is the reefer plug daily rate and power surcharge percentage for the terminal in Los Angeles, and how often must the temperature probes be calibrated according to the pre-trip inspection requirements?",
+      "expected_source_docs": [
+        "inspection_checklist.md",
+        "terminal_tariffs.csv"
+      ],
+      "expected_facts": [
+        "reefer_plug_daily_usd: 125",
+        "power_surcharge_pct: 18",
+        "Probe calibration frequency: every 6 months"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "terminal_tariffs.csv::rows_5_8",
+        "inspection_checklist.md::sec::c0"
+      ],
+      "rationale": "Cross-document synthesis (terminal_tariffs.csv + inspection_checklist.md)"
+    },
+    {
+      "id": "amb_01",
+      "category": "edge_ambiguous",
+      "question": "What are the segregation requirements for containers carrying IMDG Class 2.1 and Class 3 near reefer power racks, and which cargo classes are included in Tier 1 and Tier 2 shore power brownout priority tiers?",
+      "expected_source_docs": [
+        "hazardous_cargo_exceptions.txt"
+      ],
+      "expected_facts": [
+        "Containers carrying IMDG Class 2.1 or Class 3 must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.",
+        "Active Pharmaceutical (Class P) reefers are included in Tier 1 shore power brownout priority tiers."
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "hazardous_cargo_exceptions.txt::sec::c0"
+      ],
+      "rationale": "Ambiguous/underspecified query handling"
+    },
+    {
+      "id": "amb_02",
+      "category": "edge_ambiguous",
+      "question": "What is the charge for a container with a 5-day dwell period if the terminal's free dwell days are 3 and the reefer plug-in daily fee is $100 with a 10% power surcharge?",
+      "expected_source_docs": [
+        "cold_chain_sop.md"
+      ],
+      "expected_facts": [
+        "terminal's free dwell days",
+        "reefer plug-in daily usd",
+        "power surcharge pct"
+      ],
+      "should_refuse": false,
+      "source_chunk_ids": [
+        "cold_chain_sop.md::sec::c1"
+      ],
+      "rationale": "Ambiguous/underspecified query handling"
+    }
+  ]
+}

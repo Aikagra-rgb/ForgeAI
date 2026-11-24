@@ -1,0 +1,9 @@
+asset_id,model,category,department,unit_price_usd,stock_qty,warranty_expiry
+IT-101,ThinkPad X1 Carbon Gen 12,Laptop,Engineering,1650,9,2027-06-30
+IT-102,MacBook Pro 14 M3,Laptop,Design,2100,4,2025-12-15
+IT-103,Dell UltraSharp 27 4K,Monitor,Operations,580,15,2026-03-01
+IT-104,HP EliteDesk 800 G9,Workstation,Finance,1400,6,2028-01-20
+IT-105,Logitech Rally Bar,Conference,Facilities,2900,2,2025-09-10
+IT-106,Lenovo ThinkCentre M90q,Mini PC,Support,890,12,2027-11-15
+IT-107,Dell PowerEdge T550,Server,Infrastructure,4800,1,2026-08-01
+IT-108,iPad Pro 11 M4,Tablet,Field Ops,1050,7,2027-04-01

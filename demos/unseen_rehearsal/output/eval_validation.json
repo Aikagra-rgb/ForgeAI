@@ -1,0 +1,139 @@
+{
+  "total_non_refusal_cases": 15,
+  "cases_validated": 15,
+  "total_facts_checked": 28,
+  "facts_kept": 22,
+  "facts_dropped": 6,
+  "cases_regenerated": 1,
+  "case_details": [
+    {
+      "case_id": "ans_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_04",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_05",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_06",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_07",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_08",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_09",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "ans_10",
+      "chunk_ids_valid": true,
+      "original_fact_count": 1,
+      "kept_fact_count": 1,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 4,
+      "kept_fact_count": 4,
+      "dropped_facts": [
+        "Dell UltraSharp 27 4K monitors have a unit price of $580 each.",
+        "An order of 10 or more units of Dell UltraSharp 27 4K monitors qualifies for a 15% bulk discount.",
+        "A flat USD 75 staging and imaging fee applies per order regardless of quantity.",
+        "Orders exceeding USD 5,000 require VP Finance sign-off."
+      ],
+      "regenerated": true
+    },
+    {
+      "case_id": "multi_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    },
+    {
+      "case_id": "multi_03",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "iPad Pro 11 M4 has a maximum loan period of up to 14 calendar days"
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_01",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 1,
+      "dropped_facts": [
+        "2 business days"
+      ],
+      "regenerated": false
+    },
+    {
+      "case_id": "amb_02",
+      "chunk_ids_valid": true,
+      "original_fact_count": 2,
+      "kept_fact_count": 2,
+      "dropped_facts": [],
+      "regenerated": false
+    }
+  ]
+}

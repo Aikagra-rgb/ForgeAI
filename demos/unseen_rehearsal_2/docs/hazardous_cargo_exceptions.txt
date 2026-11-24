@@ -1,0 +1,14 @@
+HAZARDOUS CARGO EXCEPTIONS & BROWNOUT PRIORITY RULES
+
+1. IMDG Segregation Near Reefer Power Banks:
+- Containers carrying IMDG Class 2.1 (Flammable Gases) or Class 3 (Flammable Liquids) must maintain at least 6 meters horizontal segregation from energized 440V reefer power racks.
+- Combined Reefer + Class 1 Explosives stacking is strictly prohibited in all coastal cold-chain zones.
+
+2. Shore Power Brownout Priority Tiers:
+- Tier 1 (Highest Priority, never shed): Active Pharmaceutical (Class P) reefers.
+- Tier 2 (Protected): Frozen Seafood (Class F) units when internal temp exceeds -16°C.
+- Tier 3 (Cycle-eligible up to 60 minutes): Chilled Produce (Class C) containers during peak grid load shedding.
+
+3. Emergency Backup Generator Cutover:
+- Diesel backup generators must automatically pick up Tier 1 and Tier 2 reefer loads within 45 seconds of shore-grid voltage drop below 380V.
+- Fuel reserves must support a minimum of 72 continuous hours of Tier 1 and Tier 2 operation.
