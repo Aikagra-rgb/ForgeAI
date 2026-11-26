@@ -25,7 +25,7 @@ class BudgetExceededError(RuntimeError):
 
 def _extract_json_block(text: str) -> str:
     """Extract a JSON object or array from raw model output."""
-    text = text.strip()
+    text = re.sub(r"<think>[\s\S]*?</think>", "", text, flags=re.IGNORECASE).strip()
     fence_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", text, re.IGNORECASE)
     if fence_match:
         return fence_match.group(1).strip()
@@ -105,22 +105,29 @@ class LLMClient:
             kwargs["response_format"] = {"type": "json_object"}
 
         resp = None
-        for attempt in range(3):
+        for attempt in range(4):
             try:
                 resp = self.client.chat.completions.create(**kwargs)
                 break
             except Exception as exc:
                 err_str = str(exc).lower()
-                # Fallback if provider/model rejects response_format={"type": "json_object"}
-                if json_mode and "response_format" in err_str:
+                # Fallback if provider/model rejects or fails strict server-side json_object validation (e.g. Groq 400)
+                if "response_format" in kwargs and any(
+                    tok in err_str
+                    for tok in ("response_format", "json_validate_failed", "failed to validate json", "failed_generation")
+                ):
                     kwargs.pop("response_format", None)
-                    resp = self.client.chat.completions.create(**kwargs)
-                    break
+                    continue
+                # Fallback if provider returns 400 tool_use_failed on a malformed small-model tool call
+                if "tools" in kwargs and "tool_use_failed" in err_str:
+                    kwargs.pop("tools", None)
+                    kwargs.pop("tool_choice", None)
+                    continue
                 is_transient = any(
                     tok in err_str
                     for tok in ("429", "rate limit", "too many requests", "timeout", "502", "503", "504", "connection")
                 )
-                if is_transient and attempt < 2:
+                if is_transient and attempt < 3:
                     time.sleep(1.5 * (2**attempt))
                     continue
                 raise
@@ -162,7 +169,7 @@ class LLMClient:
                 working_messages,
                 temperature=temperature,
                 json_mode=True,
-                max_tokens=2500,
+                max_tokens=4096,
             )
             raw = (msg.content or "").strip()
             candidate = _extract_json_block(raw)
