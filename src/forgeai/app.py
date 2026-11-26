@@ -48,8 +48,8 @@ with st.sidebar:
     st.caption(f"Default endpoint: `{_env_url}`  \nDefault model: `{_env_model}`")
     with st.expander("Session override (optional)"):
         st.caption("Leave blank to use server `.env` / Streamlit Secrets. Overrides stay in your browser session only.")
-        _override_url = st.text_input("Base URL", value="", placeholder="https://api.groq.com/openai/v1", key="llm_override_url").strip()
-        _override_model = st.text_input("Model", value="", placeholder="openai/gpt-oss-20b", key="llm_override_model").strip()
+        _override_url = st.text_input("Base URL", value="", placeholder="https://integrate.api.nvidia.com/v1", key="llm_override_url").strip()
+        _override_model = st.text_input("Model", value="", placeholder="meta/llama-3.3-70b-instruct", key="llm_override_model").strip()
         _override_key = st.text_input("API Key", value="", type="password", key="llm_override_key").strip()
 
 
