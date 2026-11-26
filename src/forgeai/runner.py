@@ -14,20 +14,25 @@ from forgeai.tools import execute_tool, get_openai_tools
 
 
 def _extract_cited_sources(answer: str, retrieved: list[DocumentChunk]) -> list[str]:
-    """Detect source filenames cited in the answer."""
-    cited: list[str] = []
+    """Detect and normalize source filenames cited in the answer."""
+    cited: set[str] = set()
     candidate_names = {c.filename for c in retrieved}
+    candidate_by_lower = {name.lower(): name for name in candidate_names}
+    answer_lower = answer.lower()
+
     for name in candidate_names:
         stem = name.rsplit(".", 1)[0]
-        if name.lower() in answer.lower() or stem.lower() in answer.lower():
-            cited.append(name)
+        if name.lower() in answer_lower or stem.lower() in answer_lower:
+            cited.add(name)
 
-    # Also catch explicit [Source: ...] patterns
+    # Catch explicit [Source: ...] patterns, splitting comma lists and stripping "| chunk N"
     for match in re.findall(r"\[Source:\s*([^\]]+)\]", answer, flags=re.IGNORECASE):
-        clean = match.strip()
-        if clean and clean not in cited:
-            cited.append(clean)
-    return sorted(set(cited))
+        for part in match.split(","):
+            head = part.split("|", 1)[0].strip()
+            if not head:
+                continue
+            cited.add(candidate_by_lower.get(head.lower(), head))
+    return sorted(cited)
 
 
 class GenericAgentRunner:
@@ -84,12 +89,14 @@ class GenericAgentRunner:
 
         messages: list[dict[str, Any]] = [{"role": "system", "content": self._build_system_message()}]
         if history:
-            messages.extend(history)
+            messages.extend(history[-4:])
 
         user_payload = (
             f"Retrieved Context:\n{context_str}\n\n"
             f"User Question:\n{question}\n\n"
-            "Answer strictly based on the retrieved context and any tool outputs. "
+            "Answer the current User Question directly and strictly based on the retrieved context and any tool outputs. "
+            "Do not carry over unrelated numbers or items from previous chat turns unless the user explicitly refers to them. "
+            "Carefully check numeric thresholds and exception clauses (such as 'unless', 'more than', or 'under'). "
             "Cite source filenames using [Source: <filename>]. "
             "If the retrieved context contains relevant facts, answer directly; "
             "only refuse when the question is out-of-scope or completely unsupported by the context."

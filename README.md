@@ -10,7 +10,24 @@ ForgeAI is an autonomous meta-agent factory that compiles a one-paragraph brief 
 4. **Chunk-Grounded Eval Generator & Fact Validator** (`eval_gen.py`): Generates ≥20 test cases (`eval_set.json`) bottom-up across `answerable`, `refusal`, `edge_multi_doc`, and `edge_ambiguous`, validates every non-refusal `expected_fact` strictly against its cited source chunks (`eval_validation.json`), and exports `eval_generation_prompts.json`.
 5. **Hybrid Deterministic + Decomposed Judge** (`judge.py`): Combines deterministic checks (retrieval hit, citation presence, refusal detection) with binary per-fact and grounding checks at `temperature=0.0`.
 6. **Targeted Critic–Optimizer Loop** (`optimizer.py`): Classifies failures (`retrieval_miss`, `hallucination`, `wrong_refusal`, `prompt_defect`), patches only the targeted component (up to 3 iterations with rollback on regression and token/latency budget enforcement), and writes `iteration_*.json` + `scorecard.json`.
-7. **Honest Reporter** (`reporter.py`): Produces `final_report.md` detailing groundability findings, tool selection audit, eval validation stats, per-iteration diffs, and every remaining failure.
+7. **Honest Reporter & Requirement Coverage Map** (`reporter.py`): Produces `final_report.md` and `coverage_matrix.json`, linking every `must_answer`, `must_refuse`, `tool_capability`, and `unsupported_gap` item to its eval cases and document/tool evidence (flagging untested requirements honestly), alongside groundability findings, tool selection audit, eval validation stats, per-iteration diffs, and every remaining failure.
+
+## Quick Start for Reviewers (Unseen Brief)
+
+1. Install dependencies & editable package (no `PYTHONPATH` required):
+   ```bash
+   pip install -r requirements.txt
+   pip install -e . --no-build-isolation --no-deps
+   cp .env.example .env
+   ```
+2. Run **unattended CLI build** on any brief + documents folder:
+   ```bash
+   python -m forgeai.cli build --brief path/to/brief.txt --docs path/to/docs --out ./output/unseen --unattended
+   ```
+3. Or launch the **Streamlit Web UI** (`streamlit run src/forgeai/app.py`):
+   - **Tab 1 — Build Agent:** Upload a brief + source files (isolated into unique per-run upload folders) or use local paths → review/edit the drafted **Human Checkpoint `Requirements JSON`** → toggle **Prompt Tournament** (stratified across answerable, refusal, multi-doc, and ambiguous cases) → watch live percentage & per-case progress.
+   - **Tab 2 — Run Agent:** Automatically loads the newly built `agent_config.json` & docs folder (with cached retrieval index), shows enabled tools, and logs normalized `Sources | Tools | Latency` captions per reply.
+   - **Tab 3 — Regression:** Re-evaluates against an updated documents folder with live progress, Baseline vs. Regression pass-rate delta metrics, and a failed-cases drift table.
 
 ## Setup (Reproducible)
 
@@ -60,6 +77,21 @@ streamlit run src/forgeai/app.py
 python -m forgeai.cli regress --docs demos/hr_policy/docs --artifacts demos/hr_policy/output
 ```
 
+### Factory vs. Human Baseline Comparison
+```bash
+python -m forgeai.cli compare --baseline demos/hr_policy/human_baseline_config.json --docs demos/hr_policy/docs --artifacts demos/hr_policy/output
+```
+
+## Stretch Goals Implemented
+
+- **Prompt Tournament:** Stratified 8-case tournament slice across 3 candidate system prompts (`--tournament` / Streamlit checkbox), logged in `final_report.md`.
+- **Budget Enforcement:** Configurable token/latency `RunBudget` (`FORGEAI_MAX_TOKENS`, `FORGEAI_MAX_LATENCY_SECONDS`) with early stopping on plateau/budget exhaustion and automatic rollback on regression.
+- **Human Checkpoint:** Review/edit structured `requirements.json` before generation in both the Streamlit UI (editable JSON checkpoint) and interactive CLI (`requirements_draft.json`).
+- **Regression Mode:** Re-evaluates updated documents against frozen `eval_set.json`, persists `regression_scorecard.json` + `regression_report.md`, and displays Baseline vs. Regression delta metrics in Tab 3.
+- **Factory vs. Human Baseline:** Hand-written `demos/hr_policy/human_baseline_config.json` compared on the exact same 20-case `eval_set.json` (`demos/hr_policy/output/baseline_comparison.md` + Tab 4):
+  - **Result (`demos/hr_policy`):** ForgeAI Factory **75.0% (15/20)** vs. Human Baseline **60.0% (12/20)** (**+15.0%**; Factory won 3 cases — `ans_07`, `ref_01`, `multi_03` — via broader out-of-scope refusal generalization and hybrid `top_k=5` retrieval; 5 shared hard failures documented honestly).
+- **Web UI & Cloud-Ready Config:** 4-tab Streamlit app (`src/forgeai/app.py`) with live progress bars, cached retrieval index, and automatic `st.secrets` → `os.environ` bridging for one-click Streamlit Community Cloud deployment (with any OpenAI-compatible endpoint such as Groq or OpenRouter).
+
 ## Live End-to-End Run Summary (`qwen2.5:7b-instruct` via Ollama)
 
 | Demo | Domain & Docs | Pass Rate (Init → Final) | Iterations | Selected Tools | Groundability Guard Gaps | Eval Validation |
@@ -68,3 +100,5 @@ python -m forgeai.cli regress --docs demos/hr_policy/docs --artifacts demos/hr_p
 | **Demo 2** (`demos/maritime_ports/`) | LINERLIB TSV/CSV + Docs (`ports.csv`, `fleet_data.csv`, `linerlib_readme.md`) | **95.0% → 95.0%** (19/20) | 0 | `csv_lookup`, `calculator`, `open_meteo_weather` | `None` (`[]`) | 15/15 cases, 22/33 kept (14 dropped, 4 regenerated) |
 | **Unseen Rehearsal 1** (`demos/unseen_rehearsal/`) | IT Asset & Warranty Helpdesk (`hardware_inventory.csv`, `it_asset_policy.md`, `support_sla.txt`) | **95.0% → 95.0%** (19/20) | 0 | `csv_lookup`, `calculator`, `current_date` | `Submit Jira purchase approval tickets` | 15/15 cases, 22/28 kept (6 dropped, 1 regenerated) |
 | **Unseen Rehearsal 2** (`demos/unseen_rehearsal_2/`) | Coastal Cold-Chain & Reefer Ops (`terminal_tariffs.csv`, `cold_chain_sop.md`, `hazardous_cargo_exceptions.txt`, `inspection_checklist.md`) | **90.0% → 90.0%** (18/20) | 0 | `csv_lookup`, `calculator`, `open_meteo_weather` | `Filing customs clearance manifests` | 15/15 cases, 22/24 kept (2 dropped, 0 regenerated) |
+
+> *Artifact note:* All new factory runs also persist `eval_set_raw.json` alongside `eval_set.json` and `eval_validation.json`; the 4 earlier committed demo runs contain `eval_set.json` and `eval_validation.json` (recording every dropped/kept fact) from prior to adding `eval_set_raw.json` export.

@@ -12,10 +12,13 @@ from forgeai.schemas import ClarifyingQA, CorpusManifest, RequirementsDoc, Unsup
 from forgeai.tools import TOOL_DEFINITIONS, format_tool_catalog
 
 
-class _IntakeProbe(BaseModel):
+class IntakeProbe(BaseModel):
     clarifying_questions: list[str] = Field(default_factory=list, max_length=5)
     tool_supported_capabilities: list[str] = Field(default_factory=list)
     unsupported_gaps: list[UnsupportedGap] = Field(default_factory=list)
+
+
+_IntakeProbe = IntakeProbe
 
 
 _REFUSAL_CLAUSE_RE = re.compile(
@@ -188,14 +191,12 @@ def _reconcile_tool_capabilities(
     return req
 
 
-def run_intake_interview(
+def probe_intake(
     brief: str,
     manifest: CorpusManifest,
     llm: LLMClient,
-    unattended: bool = False,
-    answer_fn: Optional[Callable[[str, int, int], str]] = None,
-) -> RequirementsDoc:
-    """Inspect brief + corpus manifest + registered tools, ask <=5 questions, and output RequirementsDoc."""
+) -> IntakeProbe:
+    """Step 1 of intake: inspect brief + manifest + registered tools to propose <=5 questions and gaps."""
     manifest_json = manifest.model_dump_json(indent=2)
     tool_catalog = format_tool_catalog()
 
@@ -232,31 +233,21 @@ def run_intake_interview(
         },
     ]
 
-    probe = llm.structured_chat(probe_messages, _IntakeProbe, temperature=0.0)
-    questions = probe.clarifying_questions[:5]
-    qa_pairs: list[ClarifyingQA] = []
+    probe = llm.structured_chat(probe_messages, IntakeProbe, temperature=0.0)
+    probe.clarifying_questions = probe.clarifying_questions[:5]
+    return probe
 
-    if not unattended and questions:
-        for idx, q in enumerate(questions, start=1):
-            if answer_fn is not None:
-                ans = answer_fn(q, idx, len(questions))
-            else:
-                ans = input(f"[Clarifying Q{idx}/{len(questions)}] {q}\n> ").strip()
-            qa_pairs.append(
-                ClarifyingQA(
-                    question=q,
-                    answer=ans or "Use conservative, document- and tool-grounded defaults.",
-                )
-            )
-    else:
-        for q in questions:
-            qa_pairs.append(
-                ClarifyingQA(
-                    question=q,
-                    answer="Unattended mode: use conservative defaults grounded in the provided documents and any applicable registered tools.",
-                )
-            )
 
+def synthesize_requirements(
+    brief: str,
+    manifest: CorpusManifest,
+    probe: IntakeProbe,
+    qa_pairs: list[ClarifyingQA],
+    llm: LLMClient,
+) -> RequirementsDoc:
+    """Step 2 of intake: synthesize and reconcile a structured RequirementsDoc from probe + Q&A."""
+    manifest_json = manifest.model_dump_json(indent=2)
+    tool_catalog = format_tool_catalog()
     qa_text = "\n".join(f"Q: {x.question}\nA: {x.answer}" for x in qa_pairs) or "(No clarifying Q&A)"
     gaps_text = (
         "\n".join(f"- {g.requested_topic}: {g.reason}" for g in probe.unsupported_gaps)
@@ -314,3 +305,45 @@ def run_intake_interview(
             existing_refuse.add(gap.requested_topic.lower())
 
     return req
+
+
+def run_intake_interview(
+    brief: str,
+    manifest: CorpusManifest,
+    llm: LLMClient,
+    unattended: bool = False,
+    answer_fn: Optional[Callable[[str, int, int], str]] = None,
+) -> RequirementsDoc:
+    """Inspect brief + corpus manifest + registered tools, ask <=5 questions, and output RequirementsDoc."""
+    probe = probe_intake(brief=brief, manifest=manifest, llm=llm)
+    questions = probe.clarifying_questions[:5]
+    qa_pairs: list[ClarifyingQA] = []
+
+    if not unattended and questions:
+        for idx, q in enumerate(questions, start=1):
+            if answer_fn is not None:
+                ans = answer_fn(q, idx, len(questions))
+            else:
+                ans = input(f"[Clarifying Q{idx}/{len(questions)}] {q}\n> ").strip()
+            qa_pairs.append(
+                ClarifyingQA(
+                    question=q,
+                    answer=ans or "Use conservative, document- and tool-grounded defaults.",
+                )
+            )
+    else:
+        for q in questions:
+            qa_pairs.append(
+                ClarifyingQA(
+                    question=q,
+                    answer="Unattended mode: use conservative defaults grounded in the provided documents and any applicable registered tools.",
+                )
+            )
+
+    return synthesize_requirements(
+        brief=brief,
+        manifest=manifest,
+        probe=probe,
+        qa_pairs=qa_pairs,
+        llm=llm,
+    )

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import time
 from collections import Counter
-from typing import Optional
+from typing import Callable, Optional
 
 from pydantic import BaseModel
 
@@ -31,11 +31,15 @@ def evaluate_agent(
     eval_set: EvalSet,
     docs_dir: str,
     llm: LLMClient,
+    on_case: Optional[Callable[[int, int, str], None]] = None,
 ) -> list[JudgeResult]:
     """Run GenericAgentRunner on every EvalCase and grade with the Hybrid Judge."""
     runner = GenericAgentRunner(config=config, docs_dir=docs_dir, llm=llm)
     results: list[JudgeResult] = []
-    for case in eval_set.cases:
+    total = len(eval_set.cases)
+    for idx, case in enumerate(eval_set.cases, start=1):
+        if on_case is not None:
+            on_case(idx, total, case.id)
         trace = runner.run(case.question)
         result = judge_case(case, trace, llm)
         results.append(result)
@@ -99,7 +103,8 @@ def _apply_targeted_patch(
                 "role": "system",
                 "content": (
                     f"You are ForgeAI's Critic-Optimizer. Patch ONLY the `{target_section}` section "
-                    "of the system prompt to fix the listed failures. Keep it concise (no prompt bloat)."
+                    "of the system prompt to fix the listed failures. Keep it concise (no prompt bloat). "
+                    "Your `updated_text` MUST meaningfully modify the current text; never return it unchanged."
                 ),
             },
             {
@@ -115,13 +120,37 @@ def _apply_targeted_patch(
         temperature=0.1,
     )
 
-    setattr(updated.system_prompt, target_section, patch.updated_text)
+    updated_text = patch.updated_text.strip()
+    patch_reason = patch.reason
+    if not updated_text or updated_text == before_text.strip():
+        fallback_additions = {
+            "wrong_refusal": (
+                " Always answer in-scope questions directly whenever relevant facts appear in the retrieved "
+                "documents or registered tools; refuse only genuinely out-of-scope or unsupported requests."
+            ),
+            "hallucination": (
+                " Never invent numbers, dates, or policy rules not explicitly present in the retrieved context or tool outputs."
+            ),
+            "prompt_defect": (
+                " Include every relevant numeric threshold, limit, and exception clause verbatim from the retrieved context."
+            ),
+        }
+        addition = fallback_additions.get(
+            dominant_category,
+            " Address all aspects of the user's question directly using verbatim facts from the retrieved context.",
+        )
+        updated_text = (before_text.strip() + addition).strip()
+        patch_reason = (
+            f"Applied targeted `{dominant_category}` guardrail reinforcement because the optimizer returned an unchanged section."
+        )
+
+    setattr(updated.system_prompt, target_section, updated_text)
     diffs.append(
         IterationDiff(
             component=f"system_prompt.{target_section}",
             before=before_text,
-            after=patch.updated_text,
-            reason=patch.reason,
+            after=updated_text,
+            reason=patch_reason,
         )
     )
     return updated, diffs
@@ -134,11 +163,23 @@ def run_optimization_loop(
     llm: LLMClient,
     max_iterations: int = 3,
     target_pass_rate: float = 0.90,
+    progress_cb: Optional[Callable[[float, str], None]] = None,
 ) -> tuple[AgentConfig, Scorecard]:
     """Run up to max_iterations of targeted critic-optimizer improvements."""
+    emit = progress_cb or (lambda pct, msg: None)
     current_config = initial_config
-    current_results = evaluate_agent(current_config, eval_set, docs_dir, llm)
+    current_results = evaluate_agent(
+        current_config,
+        eval_set,
+        docs_dir,
+        llm,
+        on_case=lambda i, n, cid: emit(
+            0.35 * (i / max(1, n)),
+            f"Baseline evaluation: case {i}/{n} ({cid})",
+        ),
+    )
     initial_rate = _pass_rate(current_results)
+    emit(0.38, f"Baseline evaluation finished: {initial_rate:.1%} pass rate")
     iterations: list[IterationLog] = []
     skipped_categories: set[str] = set()
 
@@ -159,12 +200,24 @@ def run_optimization_loop(
 
         t0 = time.perf_counter()
         tok_before = llm.budget.tokens_used
+        slot_start = 0.38 + (it - 1) * (0.62 / max(1, max_iterations))
+        slot_span = 0.62 / max(1, max_iterations)
+        emit(slot_start, f"Iteration {it}/{max_iterations}: patching `{dominant_cat}` failures...")
 
         try:
             candidate_config, diffs = _apply_targeted_patch(
                 current_config, dominant_cat, [r for r in failed if r.case_id in addressed_ids], eval_set, llm
             )
-            candidate_results = evaluate_agent(candidate_config, eval_set, docs_dir, llm)
+            candidate_results = evaluate_agent(
+                candidate_config,
+                eval_set,
+                docs_dir,
+                llm,
+                on_case=lambda i, n, cid, _s=slot_start, _sp=slot_span, _it=it: emit(
+                    _s + _sp * (0.15 + 0.85 * (i / max(1, n))),
+                    f"Iteration {_it}/{max_iterations} re-evaluation: case {i}/{n} ({cid})",
+                ),
+            )
         except BudgetExceededError:
             break
 

@@ -60,8 +60,8 @@ class LLMClient:
         self.model = model or os.getenv("FORGEAI_MODEL", "qwen2.5:7b-instruct")
         self.client = OpenAI(base_url=self.base_url, api_key=self.api_key)
         self.budget = budget or RunBudget(
-            max_tokens=int(os.getenv("FORGEAI_MAX_TOKENS", "250000")),
-            max_latency_seconds=float(os.getenv("FORGEAI_MAX_LATENCY_SECONDS", "900")),
+            max_tokens=int(os.getenv("FORGEAI_MAX_TOKENS", "400000")),
+            max_latency_seconds=float(os.getenv("FORGEAI_MAX_LATENCY_SECONDS", "1200")),
         )
 
     def check_budget(self) -> None:
@@ -104,14 +104,25 @@ class LLMClient:
         if json_mode:
             kwargs["response_format"] = {"type": "json_object"}
 
-        try:
-            resp = self.client.chat.completions.create(**kwargs)
-        except Exception as exc:
-            # Fallback if provider/model rejects response_format={"type": "json_object"}
-            if json_mode and "response_format" in str(exc).lower():
-                kwargs.pop("response_format", None)
+        resp = None
+        for attempt in range(3):
+            try:
                 resp = self.client.chat.completions.create(**kwargs)
-            else:
+                break
+            except Exception as exc:
+                err_str = str(exc).lower()
+                # Fallback if provider/model rejects response_format={"type": "json_object"}
+                if json_mode and "response_format" in err_str:
+                    kwargs.pop("response_format", None)
+                    resp = self.client.chat.completions.create(**kwargs)
+                    break
+                is_transient = any(
+                    tok in err_str
+                    for tok in ("429", "rate limit", "too many requests", "timeout", "502", "503", "504", "connection")
+                )
+                if is_transient and attempt < 2:
+                    time.sleep(1.5 * (2**attempt))
+                    continue
                 raise
 
         elapsed_s = time.perf_counter() - t0

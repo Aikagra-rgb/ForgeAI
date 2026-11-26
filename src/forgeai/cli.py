@@ -10,9 +10,9 @@ from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
 
-from forgeai.pipeline import run_factory, run_regression
+from forgeai.pipeline import run_baseline_comparison, run_factory, run_regression
 from forgeai.runner import GenericAgentRunner
-from forgeai.schemas import AgentConfig
+from forgeai.schemas import AgentConfig, RequirementsDoc
 
 app = typer.Typer(help="ForgeAI: The Agent That Builds Agents")
 console = Console()
@@ -34,6 +34,22 @@ def build(
     else:
         brief_text = brief
 
+    def _cli_checkpoint(req: RequirementsDoc) -> RequirementsDoc:
+        draft_path = Path(output_dir) / "requirements_draft.json"
+        draft_path.parent.mkdir(parents=True, exist_ok=True)
+        draft_path.write_text(req.model_dump_json(indent=2), encoding="utf-8")
+        console.print(Panel.fit(f"[bold yellow]Human Checkpoint[/bold yellow]\nDraft saved to: {draft_path}"))
+        console.print(req.model_dump_json(indent=2))
+        choice = console.input(
+            "\nPress [bold]Enter[/bold] to approve, type [bold]r[/bold] after editing the draft file to reload, "
+            "or [bold]q[/bold] to cancel: "
+        ).strip().lower()
+        if choice == "q":
+            raise typer.Exit(code=1)
+        if choice == "r":
+            return RequirementsDoc.model_validate_json(draft_path.read_text(encoding="utf-8"))
+        return req
+
     console.print(Panel.fit("[bold cyan]ForgeAI Factory[/bold cyan] — Building & Testing Agent"))
     final_config, scorecard, report_path = run_factory(
         brief=brief_text,
@@ -42,6 +58,7 @@ def build(
         unattended=unattended,
         tournament=tournament,
         max_iterations=max_iterations,
+        checkpoint_fn=None if unattended else _cli_checkpoint,
         progress_fn=lambda msg: console.print(f"[green]•[/green] {msg}"),
     )
     console.print(
@@ -87,10 +104,38 @@ def regress(
     artifacts_dir: str = typer.Option(..., "--artifacts", "-a", help="Existing factory output directory."),
 ) -> None:
     """Re-run existing eval_set.json after documents change."""
-    scorecard = run_regression(docs_dir=docs_dir, artifacts_dir=artifacts_dir)
+    console.print(Panel.fit("[bold cyan]ForgeAI Regression[/bold cyan] — Checking Policy/Corpus Drift"))
+    scorecard = run_regression(
+        docs_dir=docs_dir,
+        artifacts_dir=artifacts_dir,
+        progress_bar_fn=lambda pct, msg: console.print(f"[green][{int(pct * 100):3d}%][/green] {msg}"),
+    )
     console.print(
-        f"[bold]Regression Result:[/bold] {scorecard.final_pass_rate:.1%} "
-        f"({scorecard.passed_cases}/{scorecard.total_cases} passed)"
+        f"\n[bold]Regression Result:[/bold] {scorecard.final_pass_rate:.1%} "
+        f"({scorecard.passed_cases}/{scorecard.total_cases} passed) | "
+        f"Report: [underline]{Path(artifacts_dir) / 'regression_report.md'}[/underline]"
+    )
+
+
+@app.command()
+def compare(
+    baseline: str = typer.Option(..., "--baseline", "-b", help="Path to hand-written human baseline agent_config.json."),
+    docs_dir: str = typer.Option(..., "--docs", "-d", help="Path to the documents folder."),
+    artifacts_dir: str = typer.Option(..., "--artifacts", "-a", help="Existing factory output directory."),
+) -> None:
+    """Compare the factory-generated agent against a hand-written human baseline on the same eval_set.json."""
+    console.print(Panel.fit("[bold cyan]ForgeAI Factory vs. Human Baseline[/bold cyan]"))
+    factory_sc, baseline_sc, report_path = run_baseline_comparison(
+        baseline_config_path=baseline,
+        docs_dir=docs_dir,
+        artifacts_dir=artifacts_dir,
+        progress_bar_fn=lambda pct, msg: console.print(f"[green][{int(pct * 100):3d}%][/green] {msg}"),
+    )
+    console.print(
+        f"\n[bold]Comparison Result:[/bold] Factory {factory_sc.final_pass_rate:.1%} "
+        f"({factory_sc.passed_cases}/{factory_sc.total_cases}) vs. Human {baseline_sc.final_pass_rate:.1%} "
+        f"({baseline_sc.passed_cases}/{baseline_sc.total_cases}) | "
+        f"Report: [underline]{report_path}[/underline]"
     )
 
 

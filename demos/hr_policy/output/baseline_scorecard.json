@@ -1,0 +1,464 @@
+{
+  "agent_name": "HRLeaveHumanBaseline",
+  "total_cases": 20,
+  "initial_pass_rate": 0.6,
+  "final_pass_rate": 0.6,
+  "passed_cases": 12,
+  "failed_cases": 8,
+  "iterations": [],
+  "final_results": [
+    {
+      "case_id": "ans_01",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Will I be eligible for FMLA/PPL upon the date of birth or placement of my son or daughter? (Yes)",
+          "present": true,
+          "evidence": "Yes, you will be eligible for FMLA/PPL upon the date of birth or placement of your son or daughter, provided you meet the eligibility criteria."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_02",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "The Employee’s Guide to Military Family Leave under the Family Medical Leave Act (WH1513) contains more specific information",
+          "present": true,
+          "evidence": "Please refer to The Employee’s Guide to Military Family Leave under the Family Medical Leave Act (WH1513) for more specific information about taking FMLA leave under the provisions for military family leave."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_03",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "donated annual leave may be used to liquidate an indebtedness incurred by the leave recipient for advanced leave used because of a medical emergency, such as caring for an adopted or foster child who is seriously ill or injured",
+          "present": true,
+          "evidence": "Yes, according to the Voluntary Leave Transfer Program (VLTP) or Voluntary Leave Bank Program (VLBP), donated annual leave may be used to liquidate an indebtedness incurred by the leave recipient for advanced sick leave used because of a medical emergency, such as a serious health condition of the employee’s adopted or foster child."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_04",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "An eligible employee is entitled to FMLA leave to care for a person who stood in loco parentis to that employee when the employee was a child.",
+          "present": true,
+          "evidence": "According to the provided context, an eligible employee is entitled to FMLA leave to care for a person who stood in loco parentis to the employee when the employee was a child."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_05",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "A job sharing team generally consists of two employees at the same grade level.",
+          "present": true,
+          "evidence": "According to the document, a job sharing team typically consists of two employees at the same grade level. However, other arrangements are possible. [Source: opm_childbirth_adoption_leave.pdf]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_06",
+      "category": "answerable",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "If an employee has 50 or more employees within 75 miles of the worksite, they are not eligible for FMLA leave.",
+          "present": false,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (0%): ['If an employee has 50 or more employees within 75 miles of the worksite, they are not eligible for FMLA leave.']"
+    },
+    {
+      "case_id": "ans_07",
+      "category": "answerable",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": false,
+      "fact_checks": [
+        {
+          "fact": "to recover from giving birth, including addressing post-partum depression or other mental health conditions following birth",
+          "present": false,
+          "evidence": ""
+        },
+        {
+          "fact": "to care for the birth mother during her post-birth recovery period, including addressing post-partum depression or other mental health conditions following birth",
+          "present": false,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "wrong_refusal",
+      "failure_reason": "Agent wrongly refused an in-scope, answerable question."
+    },
+    {
+      "case_id": "ans_08",
+      "category": "answerable",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "employees should contact the Wage and Hour Division immediately if their employer retaliates against them",
+          "present": true,
+          "evidence": "If an employee believes their employer is retaliating against them for exercising FMLA rights, they should contact the Wage and Hour Division immediately. [Source: dol_fmla_employee_guide.pdf]"
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ans_09",
+      "category": "answerable",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "an employee is pursuing adoption of a child the employee is fostering, the employee may invoke and use FMLA/PPL in the 12-month period following the new placement of the child with the employee for foster care purposes",
+          "present": false,
+          "evidence": "The context explicitly states that an employee cannot take FMLA for the adoption of a fostered child, even if the employee did not take FMLA for the foster placement."
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (0%): ['an employee is pursuing adoption of a child the employee is fostering, the employee may invoke and use FMLA/PPL in the 12-month period following the new placement of the child with the employee for foster care purposes']"
+    },
+    {
+      "case_id": "ans_10",
+      "category": "answerable",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "The employer must have the employee work at least 1250 hours in the 12 months before taking leave.",
+          "present": false,
+          "evidence": "The answer does not mention any specific number of hours."
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (0%): ['The employer must have the employee work at least 1250 hours in the 12 months before taking leave.']"
+    },
+    {
+      "case_id": "ref_01",
+      "category": "refusal",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": false,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": false,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "wrong_refusal",
+      "failure_reason": "Agent answered an out-of-scope/unsupported question instead of refusing."
+    },
+    {
+      "case_id": "ref_02",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I'm sorry, but the retrieved context does not contain information about reporting workplace injuries under OSHA regulations. The provided documents focus on the FMLA leave process, part-time employment, and military family leave. For details on OSHA regulations regarding workplace injuries, you may need to refer to OSHA's official guidelines or contact their office directly."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_03",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I'm sorry, but I can't assist with negotiating a better salary with your current employer. The information provided in the retrieved documents pertains to the Family and Medical Leave Act (FMLA) and leave policies. For salary negotiations, I recommend discussing this directly with your supervisor or HR representative."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_04",
+      "category": "refusal",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": true,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Politely refuse or state that the topic is out of scope / unsupported.",
+          "present": true,
+          "evidence": "I'm sorry, but the retrieved context does not contain any information about commercial maritime crew contracts. According to the provided documents, the FMLA eligibility criteria and guidance are specific to airline flight attendants/flight crew employees and general FMLA leave policies. For questions related to commercial maritime crew contracts, I would need to refer you to a different set of policies or guidelines, which are out of the scope of the current documents."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "ref_05",
+      "category": "refusal",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": false,
+      "fact_checks": [
+        {
+          "fact": "Eligibility criteria include being covered by the title 5 leave system for annual and sick leave purposes and having completed 12 months of qualifying Federal civilian service, military service, or a combination of both.",
+          "present": true,
+          "evidence": "To be eligible for FMLA leave under OPM’s FMLA regulations, an employee must – • be covered by the title 5 leave system for annual and sick leave purposes; • have completed 12 months of qualifying Federal civilian service, military service, or a combination of both (see OPM’s Family and Medical Leave Act (FMLA) 12-Week Entitlement fact sheet for information on what"
+        },
+        {
+          "fact": "Inform your employer about your need for FMLA leave by providing information indicating that your leave is due to an FMLA-protected condition.",
+          "present": true,
+          "evidence": "You do not have to tell your employer your diagnosis, but you do need to provide information indicating that your leave is due to an FMLA-protected condition (for example, stating that you have been to the doctor and have been given antibiotics and told to stay home for four days)."
+        },
+        {
+          "fact": "Provide medical certification within 15 calendar days if requested by your employer.",
+          "present": true,
+          "evidence": "If your employer requests medical certification, you only have 15 calendar days to provide it in most circumstances. You are responsible for the cost of getting the certification from a health care provider and for making sure that the certification is provided to your employer. If you fail to provide the requested medical certification, your FMLA leave may be denied."
+        },
+        {
+          "fact": "Contact the U.S. Department of Labor’s Wage and Hour Division (WHD) for assistance if you have questions or believe your rights under the FMLA have been violated.",
+          "present": true,
+          "evidence": "If you have questions, or you think that your rights under the FMLA may have been violated, you can contact WHD at 1-866-487-9243. You will be directed to the WHD office"
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "wrong_refusal",
+      "failure_reason": "Agent answered an out-of-scope/unsupported question instead of refusing."
+    },
+    {
+      "case_id": "multi_01",
+      "category": "edge_multi_doc",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Your name, address, and phone number",
+          "present": true,
+          "evidence": "When filing a complaint with WHD regarding FMLA rights, you should include the following information: - Your name - Your address and phone number (how you can be contacted)"
+        },
+        {
+          "fact": "The name and location of the company where you work",
+          "present": true,
+          "evidence": "When filing a complaint with WHD regarding FMLA rights, you should include the following information: - The name of the company where you work or worked - The location of the company (this may be different than the actual job site where you worked)"
+        },
+        {
+          "fact": "In loco parentis refers to an individual with day-to-day responsibility for a child's care or financial support",
+          "present": true,
+          "evidence": "In loco parentis affects FMLA leave provisions by considering a child for whom an employee has in loco parentis status as a child (son or daughter) of the employee. Additionally, a person who had in loco parentis status with respect to an employee when that employee was a child is considered the employee’s “parent.” A biological or legal relationship is not necessary."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "multi_02",
+      "category": "edge_multi_doc",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "The employer must notify the employee if the leave is designated as FMLA leave.",
+          "present": false,
+          "evidence": ""
+        },
+        {
+          "fact": "The employer must inform the employee how much leave will be counted against the FMLA entitlement if possible.",
+          "present": false,
+          "evidence": ""
+        },
+        {
+          "fact": "If the leave is not covered by FMLA, the employer must notify the employee of that determination.",
+          "present": false,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (0%): ['The employer must notify the employee if the leave is designated as FMLA leave.', 'The employer must inform the employee how much leave will be counted against the FMLA entitlement if possible.', 'If the leave is not covered by FMLA, the employer must notify the employee of that determination.']"
+    },
+    {
+      "case_id": "multi_03",
+      "category": "edge_multi_doc",
+      "passed": false,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "FMLA with substitution of PPL is only available for a new placement with an employee for adoption or foster care.",
+          "present": false,
+          "evidence": "The answer does not explicitly state this fact."
+        }
+      ],
+      "fact_score": 0.0,
+      "grounded": true,
+      "failure_category": "prompt_defect",
+      "failure_reason": "Missed expected facts (0%): ['FMLA with substitution of PPL is only available for a new placement with an employee for adoption or foster care.']"
+    },
+    {
+      "case_id": "amb_01",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Employer's responsibility to notify about leave designation within five business days",
+          "present": true,
+          "evidence": "Your employer must notify you whether you are eligible for FMLA leave within five business days ([Source: dol_fmla_employee_guide.pdf | page 8])."
+        }
+      ],
+      "fact_score": 1.0,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    },
+    {
+      "case_id": "amb_02",
+      "category": "edge_ambiguous",
+      "passed": true,
+      "retrieval_hit": true,
+      "citation_present": true,
+      "refused": false,
+      "refusal_correct": true,
+      "fact_checks": [
+        {
+          "fact": "Conditions for FMLA leave based on placement",
+          "present": true,
+          "evidence": "Yes, an employee can take FMLA leave for the placement of a foster child. However, the leave is only available for a new placement of a child for adoption or foster care, and it expires at the end of the 12 months following the placement of the child with the employee."
+        },
+        {
+          "fact": "Definition of 'placement' for FMLA purposes",
+          "present": false,
+          "evidence": ""
+        }
+      ],
+      "fact_score": 0.5,
+      "grounded": true,
+      "failure_category": null,
+      "failure_reason": ""
+    }
+  ],
+  "budget": {
+    "max_tokens": 400000,
+    "max_latency_seconds": 1200.0,
+    "tokens_used": 46099,
+    "latency_seconds": 115.52817010018043,
+    "stopped_early": false,
+    "stop_reason": ""
+  }
+}

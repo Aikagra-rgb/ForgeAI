@@ -125,7 +125,7 @@ class MockLLMClient(LLMClient):
         name = response_model.__name__
         user_text = str(messages[-1].get("content", ""))
 
-        if name == "_IntakeProbe":
+        if name in ("IntakeProbe", "_IntakeProbe"):
             return response_model.model_validate(
                 {
                     "clarifying_questions": ["Should costs be shown in USD?"],

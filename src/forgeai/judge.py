@@ -15,8 +15,8 @@ _REFUSAL_PATTERNS = [
     r"\bunable to\b",
     r"\bout of scope\b",
     r"\boutside (?:my|the) scope\b",
-    r"\bnot covered\b",
-    r"\bnot supported\b",
+    r"\bnot covered (?:by|in) (?:the |these |my )?(?:provided |attached )?(?:documents?|context|scope|knowledge)\b",
+    r"\bnot supported (?:by|in) (?:the |these |my )?(?:provided |available )?(?:documents?|tools?|scope|system)\b",
     r"\bdo not have (?:enough )?information\b",
     r"\bdoes not contain\b",
     r"\bno information available\b",
@@ -91,16 +91,19 @@ def judge_case(
         temperature=0.0,
     )
 
-    refused = det_refused or rubric.refused
-    refusal_correct = refused == case.should_refuse
-
     if case.should_refuse:
+        refused = det_refused or rubric.refused
+        refusal_correct = refused == case.should_refuse
         fact_score = 1.0 if refusal_correct else 0.0
-    elif rubric.fact_checks:
-        hits = sum(1 for fc in rubric.fact_checks if fc.present)
-        fact_score = hits / len(rubric.fact_checks)
     else:
-        fact_score = 1.0
+        if rubric.fact_checks:
+            hits = sum(1 for fc in rubric.fact_checks if fc.present)
+            fact_score = hits / len(rubric.fact_checks)
+        else:
+            fact_score = 1.0
+        # Avoid false-positive deterministic refusals when the answer actually delivered expected facts
+        refused = rubric.refused or (det_refused and fact_score < 0.85)
+        refusal_correct = refused == case.should_refuse
 
     # Determine pass/fail and classify failure into the 4 canonical buckets
     failure_category: FailureCategory | None = None
@@ -131,6 +134,10 @@ def judge_case(
             failure_category = "prompt_defect"
             missing = [fc.fact for fc in rubric.fact_checks if not fc.present]
             failure_reason = f"Missed expected facts ({fact_score:.0%}): {missing}"
+        elif case.expected_source_docs and not citation_present:
+            passed = False
+            failure_category = "prompt_defect"
+            failure_reason = "Answer did not cite any source document filename."
         else:
             passed = True
 

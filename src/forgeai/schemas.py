@@ -147,6 +147,23 @@ class EvalSet(BaseModel):
     cases: list[EvalCase] = Field(default_factory=list)
 
 
+class RequirementCoverage(BaseModel):
+    """Inspectable link from a brief requirement to eval evidence."""
+
+    topic: str
+    requirement_type: Literal["must_answer", "must_refuse", "tool_capability", "unsupported_gap"]
+    status: Literal["covered", "untested"]
+    matching_case_ids: list[str] = Field(default_factory=list)
+    evidence_sources: list[str] = Field(default_factory=list)
+
+
+class CoverageMatrix(BaseModel):
+    """Heuristic traceability audit; coverage means a related eval exists, not that it passed."""
+
+    matching_method: str = "normalized keyword overlap; inspect matches before treating them as semantic proof"
+    requirements: list[RequirementCoverage] = Field(default_factory=list)
+
+
 class FactValidationResult(BaseModel):
     """Support check of a single expected_fact against its cited chunk text."""
 

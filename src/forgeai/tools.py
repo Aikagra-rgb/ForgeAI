@@ -7,6 +7,7 @@ import csv
 import datetime
 import json
 import operator
+import re
 from pathlib import Path
 from typing import Any, Callable
 
@@ -38,7 +39,11 @@ def _eval_ast(node: ast.AST) -> float:
     if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
         return float(node.value)
     if isinstance(node, ast.BinOp) and type(node.op) in _SAFE_OPERATORS:
-        return _SAFE_OPERATORS[type(node.op)](_eval_ast(node.left), _eval_ast(node.right))
+        left = _eval_ast(node.left)
+        right = _eval_ast(node.right)
+        if isinstance(node.op, ast.Pow) and (abs(right) > 20 or abs(left) > 1e6):
+            raise ValueError("Exponent out of safe range.")
+        return _SAFE_OPERATORS[type(node.op)](left, right)
     if isinstance(node, ast.UnaryOp) and type(node.op) in _SAFE_OPERATORS:
         return _SAFE_OPERATORS[type(node.op)](_eval_ast(node.operand))
     if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
@@ -52,7 +57,9 @@ def _eval_ast(node: ast.AST) -> float:
 def tool_calculator(expression: str, **_kwargs: Any) -> str:
     """Safely evaluate an arithmetic expression."""
     try:
-        tree = ast.parse(expression.strip(), mode="eval")
+        cleaned = expression.strip().replace("$", "")
+        cleaned = re.sub(r"(?<=\d),(?=\d)", "", cleaned)
+        tree = ast.parse(cleaned, mode="eval")
         result = _eval_ast(tree)
         if result.is_integer():
             return str(int(result))
@@ -108,7 +115,7 @@ def tool_csv_lookup(
     if not csv_files:
         return f"No matching CSV files found in {docs_dir}."
 
-    tokens = [t.lower() for t in query.split() if t.strip()]
+    tokens = re.findall(r"[a-z0-9_.-]+", query.lower()) or [t.lower() for t in query.split() if t.strip()]
 
     def _search(use_column: bool) -> list[dict[str, Any]]:
         found: list[dict[str, Any]] = []

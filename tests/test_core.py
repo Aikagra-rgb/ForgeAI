@@ -167,3 +167,210 @@ def test_csv_lookup_wrong_column_fallback() -> None:
     )
     assert "GBABD" in res
     assert "Aberdeen" in res
+
+
+
+def test_extract_cited_sources_normalizes_chunks_and_lists():
+    from forgeai.runner import _extract_cited_sources
+    from forgeai.schemas import DocumentChunk
+
+    retrieved = [
+        DocumentChunk(chunk_id="c1", filename="expense_faq.txt", page_or_row="chunk 1", text="faq"),
+        DocumentChunk(chunk_id="c2", filename="travel_policy.md", page_or_row="chunk 2", text="policy"),
+    ]
+    answer = (
+        "Summary [Source: expense_faq.txt | chunk 1, travel_policy.md | chunk 2] "
+        "and [Source: expense_faq.txt | chunk 2]."
+    )
+    assert _extract_cited_sources(answer, retrieved) == ["expense_faq.txt", "travel_policy.md"]
+
+
+
+def test_refusal_detector_ignores_policy_not_covered_phrasing():
+    # Policy rules saying an expense is "not covered under daily per-diem" are NOT agent refusals
+    assert not _detect_refusal_deterministic(
+        "Client dinners are not covered under the standard daily meal per-diem; they are billed under Client Entertainment."
+    )
+    assert _detect_refusal_deterministic(
+        "This topic is not covered in the provided documents."
+    )
+
+
+def test_stratified_tournament_slice_covers_all_categories():
+    from forgeai.pipeline import _select_stratified_tournament_slice
+    from forgeai.schemas import EvalCase, EvalSet
+
+    cases = (
+        [EvalCase(id=f"ans_{i}", category="answerable", question=f"Q{i}", expected_facts=["f"]) for i in range(10)]
+        + [EvalCase(id=f"ref_{i}", category="refusal", question=f"R{i}", should_refuse=True) for i in range(5)]
+        + [EvalCase(id=f"multi_{i}", category="edge_multi_doc", question=f"M{i}", expected_facts=["f"]) for i in range(3)]
+        + [EvalCase(id=f"amb_{i}", category="edge_ambiguous", question=f"A{i}", expected_facts=["f"]) for i in range(2)]
+    )
+    sliced = _select_stratified_tournament_slice(EvalSet(agent_name="Demo", cases=cases), limit=8)
+    assert len(sliced.cases) == 8
+    cats = {c.category for c in sliced.cases}
+    assert cats == {"answerable", "refusal", "edge_multi_doc", "edge_ambiguous"}
+
+
+
+def test_calculator_sanitizes_currency_and_guards_exponents():
+    assert execute_tool("calculator", {"expression": "$2,500 * 0.67 + $18"}) == "1693"
+    err = execute_tool("calculator", {"expression": "9 ** 99"})
+    assert "error" in err.lower()
+
+
+def test_csv_lookup_handles_punctuated_queries():
+    maritime_docs = Path("demos/maritime_ports/docs")
+    res = execute_tool("csv_lookup", {"query": "Aberdeen, United Kingdom?", "filename": "ports.csv"}, docs_dir=str(maritime_docs))
+    assert "GBABD" in res
+
+
+def test_regression_and_baseline_reports_classify_deltas():
+    from forgeai.reporter import build_baseline_comparison_report, build_regression_report
+    from forgeai.schemas import EvalCase, EvalSet, JudgeResult, RunBudget, Scorecard
+
+    eval_set = EvalSet(
+        agent_name="DemoAgent",
+        cases=[
+            EvalCase(id="c1", category="answerable", question="Q1?", expected_facts=["f1"]),
+            EvalCase(id="c2", category="answerable", question="Q2?", expected_facts=["f2"]),
+        ],
+    )
+    sc_base = Scorecard(
+        agent_name="DemoAgent",
+        total_cases=2,
+        initial_pass_rate=0.5,
+        final_pass_rate=0.5,
+        passed_cases=1,
+        failed_cases=1,
+        final_results=[
+            JudgeResult(
+                case_id="c1", category="answerable", passed=True,
+                retrieval_hit=True, citation_present=True, refused=False, refusal_correct=True,
+            ),
+            JudgeResult(
+                case_id="c2", category="answerable", passed=False,
+                retrieval_hit=True, citation_present=True, refused=False, refusal_correct=True,
+                failure_category="prompt_defect", failure_reason="missed f2",
+            ),
+        ],
+        budget=RunBudget(),
+    )
+    sc_other = Scorecard(
+        agent_name="HumanAgent",
+        total_cases=2,
+        initial_pass_rate=0.5,
+        final_pass_rate=0.5,
+        passed_cases=1,
+        failed_cases=1,
+        final_results=[
+            JudgeResult(
+                case_id="c1", category="answerable", passed=False,
+                retrieval_hit=False, citation_present=True, refused=False, refusal_correct=True,
+                failure_category="retrieval_miss", failure_reason="missed doc",
+            ),
+            JudgeResult(
+                case_id="c2", category="answerable", passed=True,
+                retrieval_hit=True, citation_present=True, refused=False, refusal_correct=True,
+            ),
+        ],
+        budget=RunBudget(),
+    )
+    reg_md = build_regression_report(sc_base, sc_other, eval_set)
+    assert "Newly Broken Cases (1)" in reg_md and "Newly Passing Cases (1)" in reg_md
+    comp_md = build_baseline_comparison_report(sc_base, sc_other, eval_set)
+    assert "Where ForgeAI Factory Beats Human Baseline (1)" in comp_md
+    assert "Where Human Baseline Beats ForgeAI Factory (1)" in comp_md
+
+
+
+def test_input_fingerprint_detects_brief_and_upload_changes():
+    import hashlib
+    from types import SimpleNamespace
+
+    # Load pure fingerprint logic without executing top-level Streamlit page code
+    app_src = Path("src/forgeai/app.py").read_text(encoding="utf-8")
+    assert "def _compute_input_fingerprint(" in app_src
+
+    def _mock_upload(name: str, payload: bytes):
+        return SimpleNamespace(name=name, getvalue=lambda: payload)
+
+    ns: dict = {"hashlib": hashlib, "Path": Path}
+    start = app_src.index("def _docs_signature(")
+    end = app_src.index("@st.cache_resource")
+    exec(app_src[start:end], ns)
+    fp = ns["_compute_input_fingerprint"]
+
+    u1 = [_mock_upload("policy.md", b"v1")]
+    u2 = [_mock_upload("policy.md", b"v2")]
+    u3 = [_mock_upload("other.md", b"v1")]
+
+    f_base = fp("Upload files", "Brief A", "./output/run", u1, "")
+    assert f_base == fp("Upload files", "Brief A ", "./output/run", u1, "")
+    assert f_base != fp("Upload files", "Brief B", "./output/run", u1, "")
+    assert f_base != fp("Upload files", "Brief A", "./output/run", u2, "")
+    assert f_base != fp("Upload files", "Brief A", "./output/run", u3, "")
+    assert f_base != fp("Upload files", "Brief A", "./output/other", u1, "")
+    assert f_base != fp("Use local paths", "Brief A", "./output/run", [], "./demos/hr_policy/docs")
+
+
+
+def test_requirement_coverage_separates_refusal_and_includes_doc_evidence():
+    from forgeai.reporter import build_requirement_coverage
+    from forgeai.schemas import (
+        AgentConfig,
+        EvalCase,
+        EvalSet,
+        OutputContract,
+        RetrievalConfig,
+        SystemPromptSections,
+        ToolSelection,
+    )
+
+    req = RequirementsDoc(
+        brief="Answer mileage rules, calculate costs, refuse personal tax advice.",
+        agent_name="TravelDemo",
+        scope="Corporate travel policy",
+        audience="Engineers",
+        tone="Concise",
+        must_answer_topics=["Personal vehicle mileage reimbursement"],
+        must_refuse_topics=["Personal tax advice"],
+        tool_supported_capabilities=["Cost calculation via calculator"],
+        unsupported_gaps=[UnsupportedGap(requested_topic="Booking flights in Concur", reason="No Concur tool")],
+    )
+    cfg = AgentConfig(
+        agent_name="TravelDemo",
+        description="Travel helper",
+        system_prompt=SystemPromptSections(role="r", instructions="i", guardrails="g", refusal_policy="p"),
+        retrieval_config=RetrievalConfig(),
+        selected_tools=[ToolSelection(name="calculator", justification="Math")],
+        output_contract=OutputContract(),
+    )
+    eval_set = EvalSet(
+        agent_name="TravelDemo",
+        cases=[
+            EvalCase(
+                id="ans_01",
+                category="answerable",
+                question="What is the personal vehicle mileage reimbursement rate?",
+                expected_source_docs=["travel_policy.md"],
+                expected_facts=["$0.67 per mile"],
+                should_refuse=False,
+            ),
+            EvalCase(
+                id="ref_01",
+                category="refusal",
+                question="Can you give me personal tax advice for my travel deductions?",
+                should_refuse=True,
+            ),
+        ],
+    )
+    matrix = build_requirement_coverage(req, cfg, eval_set)
+    by_topic = {r.topic: r for r in matrix.requirements}
+    assert by_topic["Personal vehicle mileage reimbursement"].status == "covered"
+    assert by_topic["Personal vehicle mileage reimbursement"].matching_case_ids == ["ans_01"]
+    assert "travel_policy.md" in by_topic["Personal vehicle mileage reimbursement"].evidence_sources
+    assert by_topic["Personal tax advice"].status == "covered"
+    assert by_topic["Personal tax advice"].matching_case_ids == ["ref_01"]
+    assert by_topic["Booking flights in Concur"].status == "untested"
+    assert "tool:calculator" in by_topic["Cost calculation via calculator"].evidence_sources
