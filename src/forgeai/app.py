@@ -5,8 +5,13 @@ from __future__ import annotations
 import hashlib
 import os
 import re
+import sys
 import uuid
 from pathlib import Path
+
+_SRC_DIR = str(Path(__file__).resolve().parents[1])
+if _SRC_DIR not in sys.path:
+    sys.path.insert(0, _SRC_DIR)
 
 import streamlit as st
 
@@ -35,6 +40,31 @@ for _secret_key in (
 
 st.set_page_config(page_title="ForgeAI — The Agent That Builds Agents", layout="wide")
 st.title("ForgeAI — The Agent That Builds Agents")
+
+with st.sidebar:
+    st.header("LLM Endpoint")
+    _env_url = os.getenv("FORGEAI_BASE_URL", "http://localhost:11434/v1")
+    _env_model = os.getenv("FORGEAI_MODEL", "qwen2.5:7b-instruct")
+    st.caption(f"Default endpoint: `{_env_url}`  \nDefault model: `{_env_model}`")
+    with st.expander("Session override (optional)"):
+        st.caption("Leave blank to use server `.env` / Streamlit Secrets. Overrides stay in your browser session only.")
+        _override_url = st.text_input("Base URL", value="", placeholder="https://api.groq.com/openai/v1", key="llm_override_url").strip()
+        _override_model = st.text_input("Model", value="", placeholder="llama-3.1-8b-instant", key="llm_override_model").strip()
+        _override_key = st.text_input("API Key", value="", type="password", key="llm_override_key").strip()
+
+
+def _make_llm_client() -> LLMClient:
+    """Create an LLMClient honoring optional session-only sidebar overrides."""
+    return LLMClient(
+        base_url=_override_url or None,
+        api_key=_override_key or None,
+        model=_override_model or None,
+    )
+
+
+def _has_llm_override() -> bool:
+    return bool(_override_url or _override_key or _override_model)
+
 
 tab_factory, tab_chat, tab_regression, tab_baseline = st.tabs(
     ["1. Build Agent", "2. Run Agent", "3. Regression", "4. Factory vs Baseline"]
@@ -212,7 +242,7 @@ with tab_factory:
                     0.50,
                     text=f"50% — Profiled {len(manifest.documents)} files ({total_words:,} words). Generating clarifying questions...",
                 )
-                probe = probe_intake(brief=brief_text.strip(), manifest=manifest, llm=LLMClient())
+                probe = probe_intake(brief=brief_text.strip(), manifest=manifest, llm=_make_llm_client())
                 analyze_bar.progress(1.0, text="100% — Clarifying questions ready!")
                 st.session_state.pending_probe = probe
                 st.session_state.pending_manifest = manifest
@@ -224,7 +254,7 @@ with tab_factory:
                     text=f"45% — Profiled {len(manifest.documents)} files ({total_words:,} words). Drafting requirements...",
                 )
                 requirements = run_intake_interview(
-                    brief=brief_text.strip(), manifest=manifest, llm=LLMClient(), unattended=True
+                    brief=brief_text.strip(), manifest=manifest, llm=_make_llm_client(), unattended=True
                 )
                 analyze_bar.progress(1.0, text="100% — Requirements ready for review!")
                 req_json = requirements.model_dump_json(indent=2)
@@ -274,7 +304,7 @@ with tab_factory:
                         manifest=manifest,
                         probe=probe,
                         qa_pairs=qa_pairs,
-                        llm=LLMClient(),
+                        llm=_make_llm_client(),
                     )
                 req_json = requirements.model_dump_json(indent=2)
                 st.session_state.pending_requirements = req_json
@@ -326,6 +356,7 @@ with tab_factory:
                 cfg, scorecard, report_path = run_factory(
                     brief=inputs["brief"], docs_dir=inputs["docs_dir"], output_dir=inputs["output_dir"],
                     unattended=True, tournament=tournament, requirements_override=approved,
+                    llm=_make_llm_client(),
                     progress_bar_fn=_update_build_progress,
                 )
                 built_cfg_path = str(Path(inputs["output_dir"]) / "agent_config.json")
@@ -390,12 +421,16 @@ with tab_chat:
     if prompt := st.chat_input("Ask the generated agent a question..."):
         try:
             cfg_file = Path(cfg_path)
-            runner = _get_cached_runner(
-                cfg_path=str(cfg_file.resolve()),
-                cfg_mtime_ns=cfg_file.stat().st_mtime_ns,
-                docs_dir=str(Path(chat_docs_dir).resolve()),
-                docs_sig=_docs_signature(chat_docs_dir),
-            )
+            if _has_llm_override():
+                cfg = AgentConfig.model_validate_json(cfg_file.read_text(encoding="utf-8"))
+                runner = GenericAgentRunner(config=cfg, docs_dir=chat_docs_dir, llm=_make_llm_client())
+            else:
+                runner = _get_cached_runner(
+                    cfg_path=str(cfg_file.resolve()),
+                    cfg_mtime_ns=cfg_file.stat().st_mtime_ns,
+                    docs_dir=str(Path(chat_docs_dir).resolve()),
+                    docs_sig=_docs_signature(chat_docs_dir),
+                )
             history = [
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
@@ -439,6 +474,7 @@ with tab_regression:
             scorecard = run_regression(
                 docs_dir=regression_docs,
                 artifacts_dir=regression_artifacts,
+                llm=_make_llm_client(),
                 progress_bar_fn=_update_reg_progress,
             )
             baseline_path = Path(regression_artifacts) / "scorecard.json"
@@ -518,6 +554,7 @@ with tab_baseline:
                 baseline_config_path=baseline_cfg_path,
                 docs_dir=baseline_docs_dir,
                 artifacts_dir=baseline_artifacts_dir,
+                llm=_make_llm_client(),
                 progress_bar_fn=_update_comp_progress,
             )
             delta_pct = (fac_sc.final_pass_rate - hum_sc.final_pass_rate) * 100.0
