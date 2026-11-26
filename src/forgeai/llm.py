@@ -105,7 +105,7 @@ class LLMClient:
             kwargs["response_format"] = {"type": "json_object"}
 
         resp = None
-        for attempt in range(4):
+        for attempt in range(6):
             try:
                 resp = self.client.chat.completions.create(**kwargs)
                 break
@@ -127,8 +127,13 @@ class LLMClient:
                     tok in err_str
                     for tok in ("429", "rate limit", "too many requests", "timeout", "502", "503", "504", "connection")
                 )
-                if is_transient and attempt < 3:
-                    time.sleep(1.5 * (2**attempt))
+                if is_transient and attempt < 5:
+                    wait_s = min(30.0, 2.0 * (2**attempt))
+                    m_wait = re.search(r"try again in\s+([0-9.]+)\s*(ms|s)", err_str)
+                    if m_wait:
+                        val = float(m_wait.group(1))
+                        wait_s = (val / 1000.0 if m_wait.group(2) == "ms" else val) + 1.0
+                    time.sleep(min(wait_s, 65.0))
                     continue
                 raise
 
