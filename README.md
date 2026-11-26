@@ -1,6 +1,14 @@
 # ForgeAI — The Agent That Builds Agents
 
-ForgeAI is an autonomous meta-agent factory that compiles a one-paragraph brief and a folder of documents into a declarative, runnable, and tested AI agent—running every stage on a small, imperfect open model.
+**Live Hosted Web App:** https://forgeai-studio.streamlit.app/ *(Streamlit Community Cloud, powered by open-weight `openai/gpt-oss-20b` via Groq)*
+
+ForgeAI is an autonomous meta-agent factory that compiles a one-paragraph brief and a folder of documents into a declarative, runnable, and tested AI agent—running every stage on a small, open-weight model.
+
+## Open-Model Runtime (Provider-Agnostic)
+
+Every stage runs through a single OpenAI-compatible client (`llm.py`) with zero code changes across providers:
+- **Local / Offline CLI & Committed Demo Runs:** `qwen2.5:7b-instruct` via local **Ollama** (`http://localhost:11434/v1`) — used to generate all 4 committed demo runs and the Factory vs. Human Baseline comparison offline with zero rate limits.
+- **Hosted Web Demo (Streamlit Community Cloud):** `openai/gpt-oss-20b` via **Groq** (`https://api.groq.com/openai/v1`) — fast open-weight model powering https://forgeai-studio.streamlit.app/ (reviewers can also supply a session-only custom endpoint/model in the sidebar).
 
 ## Architecture
 
@@ -38,7 +46,7 @@ pip install -e . --no-build-isolation --no-deps
 ```
 
 ### 2. Configure Open Model Endpoint
-Copy `.env.example` to `.env` and configure your OpenAI-compatible open-model endpoint (local **Ollama** `qwen2.5:7b-instruct` by default, or **Groq** / **OpenRouter**):
+Copy `.env.example` to `.env` and configure your OpenAI-compatible open-model endpoint (local **Ollama** `qwen2.5:7b-instruct` by default, or **Groq** `openai/gpt-oss-20b` / **OpenRouter**):
 ```bash
 cp .env.example .env
 ```
@@ -90,7 +98,7 @@ python -m forgeai.cli compare --baseline demos/hr_policy/human_baseline_config.j
 - **Regression Mode:** Re-evaluates updated documents against frozen `eval_set.json`, persists `regression_scorecard.json` + `regression_report.md`, and displays Baseline vs. Regression delta metrics in Tab 3.
 - **Factory vs. Human Baseline:** Hand-written `demos/hr_policy/human_baseline_config.json` compared on the exact same 20-case `eval_set.json` (`demos/hr_policy/output/baseline_comparison.md` + Tab 4):
   - **Result (`demos/hr_policy`):** ForgeAI Factory **75.0% (15/20)** vs. Human Baseline **60.0% (12/20)** (**+15.0%**; Factory won 3 cases — `ans_07`, `ref_01`, `multi_03` — via broader out-of-scope refusal generalization and hybrid `top_k=5` retrieval; 5 shared hard failures documented honestly).
-- **Web UI & Cloud-Ready Config:** 4-tab Streamlit app (`src/forgeai/app.py`) with live progress bars, cached retrieval index, and automatic `st.secrets` → `os.environ` bridging for one-click Streamlit Community Cloud deployment (with any OpenAI-compatible endpoint such as Groq or OpenRouter).
+- **Web UI & Live Hosting:** 4-tab Streamlit app (`streamlit_app.py` / `src/forgeai/app.py`) deployed live at **https://forgeai-studio.streamlit.app/** on Streamlit Community Cloud using Groq (`openai/gpt-oss-20b`), featuring upload isolation, interactive clarifying questions + SHA-256 stale-checkpoint invalidation, live progress bars, cached retrieval index, and a session-only LLM endpoint sidebar override.
 
 ## Live End-to-End Run Summary (`qwen2.5:7b-instruct` via Ollama)
 
