@@ -417,3 +417,22 @@ def test_deterministic_external_write_guard_catches_4b_missed_gaps():
     )
     reconciled_ro = _reconcile_tool_capabilities(readonly_brief, manifest, req_ro)
     assert reconciled_ro.unsupported_gaps == []
+
+
+
+def test_format_chat_markdown_cleans_latex_and_escapes_currency():
+    import re as _re
+
+    app_src = Path("src/forgeai/app.py").read_text(encoding="utf-8")
+    ns: dict = {"re": _re}
+    start = app_src.index("def _format_chat_markdown(")
+    end = app_src.index("with tab_factory:")
+    exec(app_src[start:end], ns)
+    fmt = ns["_format_chat_markdown"]
+
+    raw = r"Revenue at $68/MWh: \(96 \times 68 \text{ USD} = $6,528\)."
+    out = fmt(raw)
+    assert r"\times" not in out
+    assert r"\(" not in out and r"\)" not in out
+    assert "×" in out
+    assert r"\$68/MWh" in out and r"\$6,528" in out

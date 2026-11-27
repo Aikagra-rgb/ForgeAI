@@ -66,6 +66,25 @@ class GenericAgentRunner:
         ]
         for rule in contract.additional_rules:
             contract_lines.append(f"- {rule}")
+        if self.selected_tool_names:
+            contract_lines.append("")
+            contract_lines.append("## Tool Usage Rules")
+            if "calculator" in self.selected_tool_names:
+                contract_lines.append(
+                    "- Always invoke the `calculator` tool for any arithmetic, multiplication, percentage, or total; never rely on mental math."
+                )
+            if "csv_lookup" in self.selected_tool_names:
+                contract_lines.append(
+                    "- Use `csv_lookup` when looking up specific rows, tariffs, capacities, or coordinates in CSV tables."
+                )
+            if "open_meteo_weather" in self.selected_tool_names:
+                contract_lines.append(
+                    "- Use `open_meteo_weather` when live weather or forecasts are requested."
+                )
+            if "current_date" in self.selected_tool_names:
+                contract_lines.append(
+                    "- Use `current_date` when checking today's date or elapsed deadline windows."
+                )
         return base + "\n\n" + "\n".join(contract_lines)
 
     def run(
@@ -97,6 +116,8 @@ class GenericAgentRunner:
             "Answer the current User Question directly and strictly based on the retrieved context and any tool outputs. "
             "Do not carry over unrelated numbers or items from previous chat turns unless the user explicitly refers to them. "
             "Carefully check numeric thresholds and exception clauses (such as 'unless', 'more than', or 'under'). "
+            "Include units or currency (such as USD or MWh) from document text or CSV column headers, "
+            "and write arithmetic in plain text using × instead of LaTeX \\(...\\) or \\[...\\]. "
             "Cite source filenames using [Source: <filename>]. "
             "If the retrieved context contains relevant facts, answer directly; "
             "only refuse when the question is out-of-scope or completely unsupported by the context."

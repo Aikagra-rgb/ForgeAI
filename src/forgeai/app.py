@@ -133,6 +133,26 @@ def _get_cached_runner(
     return GenericAgentRunner(config=cfg, docs_dir=docs_dir)
 
 
+def _format_chat_markdown(text: str) -> str:
+    """Normalize raw LaTeX delimiters/operators and escape currency $ for clean Streamlit rendering."""
+    cleaned = re.sub(r"\\text\{([^}]*)\}", r"\1", text)
+    cleaned = cleaned.replace(r"\(", "").replace(r"\)", "").replace(r"\[", "").replace(r"\]", "")
+    for latex_op, symbol in (
+        (r"\times", "×"),
+        (r"\div", "÷"),
+        (r"\cdot", "·"),
+        (r"\pm", "±"),
+        (r"\leq", "≤"),
+        (r"\le", "≤"),
+        (r"\geq", "≥"),
+        (r"\ge", "≥"),
+    ):
+        cleaned = re.sub(re.escape(latex_op) + r"\b", symbol, cleaned)
+    # Escape unescaped dollar signs so two currency values in one paragraph don't trigger KaTeX math mode
+    cleaned = re.sub(r"(?<!\\)\$", r"\\$", cleaned)
+    return cleaned
+
+
 with tab_factory:
     st.subheader("Build from a brief and document folder")
     st.caption("Upload a new brief and its source documents, or use an existing local folder.")
@@ -415,7 +435,8 @@ with tab_chat:
         st.rerun()
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
+            display_text = _format_chat_markdown(msg["content"]) if msg["role"] == "assistant" else msg["content"]
+            st.markdown(display_text)
             if msg.get("meta"):
                 st.caption(msg["meta"])
     if prompt := st.chat_input("Ask the generated agent a question..."):
