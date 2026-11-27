@@ -47,7 +47,60 @@ _EXTERNAL_ACTION_HINTS = (
     "submit",
     "send",
     "create report",
+    "scada",
+    "circuit breaker",
+    "dispatch",
+    "ecrf",
+    "medidata",
+    "concur",
+    "irb",
+    "manifest",
 )
+
+_EXTERNAL_WRITE_ACTION_PATTERNS = (
+    re.compile(r"\b(?:remotely\s+trip|trip\s+circuit\s+breaker|dispatch\s+(?:scada|inverter|setpoint)|scada\b)", re.I),
+    re.compile(r"\b(?:book|reserve)\s+(?:a\s+|my\s+)?(?:flight|flights|berth|berths|hotel|hotels|ticket|tickets|reservation|slot)\b", re.I),
+    re.compile(r"\b(?:submit|file|approve)\s+(?:[a-z0-9_/-]+\s+){0,4}(?:ticket|tickets|report|reports|manifest|manifests|order|orders|claim|claims|approval)\b", re.I),
+    re.compile(r"\b(?:update|modify|delete|write)\s+(?:[a-z0-9_/-]+\s+){0,4}(?:record|records|ecrf|database|crm|erp|jira|concur|medidata)\b", re.I),
+    re.compile(r"\b(?:send|draft\s+and\s+send)\s+(?:an?\s+)?(?:email|emails|slack|sms|message)\b", re.I),
+    re.compile(r"\b(?:issue|sign)\s+(?:[a-z0-9_/-]+\s+){0,4}(?:approval\s+letter|certificate|purchase\s+order|invoice)\b", re.I),
+)
+
+
+def _detect_external_write_gaps(brief: str) -> list[UnsupportedGap]:
+    """Deterministically detect affirmative external write/control clauses a small model may miss."""
+    gaps: list[UnsupportedGap] = []
+    for raw_clause in re.split(r"[.;\n]+", brief):
+        clause = re.sub(r"^\s*(?:\d+[.)]|[-*•])\s*", "", raw_clause).strip()
+        if not clause or _REFUSAL_CLAUSE_RE.search(clause):
+            continue
+        if any(pat.search(clause) for pat in _EXTERNAL_WRITE_ACTION_PATTERNS):
+            gaps.append(
+                UnsupportedGap(
+                    requested_topic=clause,
+                    reason=(
+                        "Requires an external write, booking, or control-system action not supported "
+                        "by the provided documents or the 4 read-only registered tools."
+                    ),
+                )
+            )
+    return gaps
+
+
+def _merge_missing_external_gaps(brief: str, existing: list[UnsupportedGap]) -> list[UnsupportedGap]:
+    """Append deterministically detected external write gaps not already covered."""
+    merged = list(existing)
+    for cand in _detect_external_write_gaps(brief):
+        cand_tokens = _content_tokens(cand.requested_topic)
+        already = any(
+            len(cand_tokens & _content_tokens(g.requested_topic)) >= 2
+            or cand.requested_topic.lower() in g.requested_topic.lower()
+            or g.requested_topic.lower() in cand.requested_topic.lower()
+            for g in merged
+        )
+        if not already:
+            merged.append(cand)
+    return merged
 
 _STOPWORDS = {
     "the", "and", "for", "with", "from", "that", "this", "into", "based",
@@ -172,6 +225,9 @@ def _reconcile_tool_capabilities(
                 if not any(len(_content_tokens(topic) & dt) >= 2 for dt in dropped_token_sets)
             ]
 
+    # 3b. Deterministic safety net: ensure affirmative external write/control clauses are flagged even on small 4B models
+    req.unsupported_gaps = _merge_missing_external_gaps(brief, req.unsupported_gaps)
+
     # 4. Eliminate contradictory must_answer_topics that overlap with unsupported_gaps or must_refuse_topics
     refusal_sources = [g.requested_topic for g in req.unsupported_gaps] + list(req.must_refuse_topics)
     refusal_token_sets = [_content_tokens(t) for t in refusal_sources if _content_tokens(t)]
@@ -235,6 +291,7 @@ def probe_intake(
 
     probe = llm.structured_chat(probe_messages, IntakeProbe, temperature=0.0)
     probe.clarifying_questions = probe.clarifying_questions[:5]
+    probe.unsupported_gaps = _merge_missing_external_gaps(brief, probe.unsupported_gaps)
     return probe
 
 

@@ -374,3 +374,46 @@ def test_requirement_coverage_separates_refusal_and_includes_doc_evidence():
     assert by_topic["Personal tax advice"].matching_case_ids == ["ref_01"]
     assert by_topic["Booking flights in Concur"].status == "untested"
     assert "tool:calculator" in by_topic["Cost calculation via calculator"].evidence_sources
+
+
+
+def test_deterministic_external_write_guard_catches_4b_missed_gaps():
+    manifest = profile_corpus("demos/maritime_ports/docs")
+    brief_with_scada = (
+        "Answer SOP questions and look up site capacities in CSV.\n"
+        "5. Remotely trip circuit breakers and dispatch SCADA inverter setpoints directly on live substations.\n"
+        "It must refuse personal tax advice."
+    )
+    # Simulate a weak 4B model that missed the SCADA gap completely
+    req = RequirementsDoc(
+        brief=brief_with_scada,
+        agent_name="MicrogridAgent",
+        scope="Microgrid ops",
+        audience="Engineers",
+        tone="Concise",
+        must_answer_topics=[
+            "Site capacities",
+            "Remotely trip circuit breakers and dispatch SCADA inverter setpoints",
+        ],
+        must_refuse_topics=["Personal tax advice"],
+        tool_supported_capabilities=[],
+        unsupported_gaps=[],
+    )
+    reconciled = _reconcile_tool_capabilities(brief_with_scada, manifest, req)
+    assert any("scada" in g.requested_topic.lower() for g in reconciled.unsupported_gaps)
+    assert all("scada" not in t.lower() for t in reconciled.must_answer_topics)
+
+    # Read-only brief must produce zero false-positive external write gaps
+    readonly_brief = "Answer HR leave policy questions from OPM and DOL guides. Refuse tax advice."
+    req_ro = RequirementsDoc(
+        brief=readonly_brief,
+        agent_name="HRAgent",
+        scope="HR leave",
+        audience="Staff",
+        tone="Formal",
+        must_answer_topics=["FMLA eligibility"],
+        must_refuse_topics=["Tax advice"],
+        unsupported_gaps=[],
+    )
+    reconciled_ro = _reconcile_tool_capabilities(readonly_brief, manifest, req_ro)
+    assert reconciled_ro.unsupported_gaps == []
